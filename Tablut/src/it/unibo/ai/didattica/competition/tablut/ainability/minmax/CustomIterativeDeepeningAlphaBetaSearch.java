@@ -9,6 +9,7 @@ public class CustomIterativeDeepeningAlphaBetaSearch extends IterativeDeepeningA
 	
 	public CustomIterativeDeepeningAlphaBetaSearch(Game<State, Action, State.Turn> game, double min, double max, int time) {
 		super(game, min, max, time);
+		 
 	}
 	
 	/**
