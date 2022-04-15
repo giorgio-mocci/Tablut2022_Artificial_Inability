@@ -1,0 +1,42 @@
+
+ALMAZENECA
+
+> toglie punti se re su trono
+			>peso delle pedine nere 									result+= this.WHITE_WEIGHT_COUNT_BLACK_PAWNS*(this.pawnsB-this.countB);
+			>IDEM BIANCHE											result -= WHITE_WEIGHT_COUNT_WHITE_PAWNS * (this.pawnsW - this.countW);
+	>controllo se il re ha pedine nere intorno o accampamenti o il trono		this.blackNearKing++;
+	>controllo se il re ha pedine bianche intorno						this.whiteNearKing++;
+	>controllo se il re ha vie libere per vincere
+	>// controllo se il re è sul trono
+	>// controllo se il re è vicino al trono
+	>// controllo se il re è su una stella(caselle blu)
+	>// controllo se il re è vicino al bordo
+>!! ho una nera sotto e controllo sopra-destra-sinistra !! se c'è un nero nella direzione MINACCIATO se c'è trono o citadella no
+
+	SEVERSU PYTHON
+>mappa nome peso con valore e fa un for con peso*valore
+> !!!!! da peso alla 3 riga/colonna (che permette di andare direttamente a vincere) e poi vede setra il re e tale riga non ci siano pedine !!!!!!!!
+> re protetto: Valuta se c'è solo un pedone bianco vicino al re
+
+
+	NEUROMANCE
+> pesi di: da quante pedine è protetto re, quanti bainchi/neri, quanti bianchi/neri vicino re, 
+> threat:  metodo che valuta se l'avversario può mangiare il pezzo appena mosso con una sola mossa successiva
+
+	MRqualcosa
+> if (!(xK >= 3 && xK <= 5) && !(yK >= 3 && yK <= 5)){        //no safe position
+
+	Rocinante
+>private Map<KEYS, Double> weights;
+>private final static int[][] bestPositions = { { 2, 3 }, { 3, 5 }, { 5, 3 }, { 6, 5 } };
+>
+>
+	MARCO
+>aspettare una delle 4 righe/colonne libere per vincere
+>//if the king is in the castle or adjacent to the castle it must be surrounded by 4/3 black pawns otherwise 2 black pawn or 1 if it is near to a camp
+	we must avoid that the king, to try to maintain his 4 free side, does not leave the castle give a
+ 	bonus point if in some side there is a white pawn and therefore it is safe on the other side?
+>
+>
+>
+>
