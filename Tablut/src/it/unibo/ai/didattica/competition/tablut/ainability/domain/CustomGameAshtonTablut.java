@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.unibo.ai.didattica.competition.tablut.ainability.heuristics.Heuristics;
+import it.unibo.ai.didattica.competition.tablut.ainability.heuristics.SheepHeuristics;
+import it.unibo.ai.didattica.competition.tablut.ainability.heuristics.WolfHeuristics;
 import it.unibo.ai.didattica.competition.tablut.domain.Action;
 import it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut;
 import it.unibo.ai.didattica.competition.tablut.domain.State;
@@ -18,6 +21,8 @@ import it.unibo.ai.didattica.competition.tablut.exceptions.OccupitedException;
 import it.unibo.ai.didattica.competition.tablut.exceptions.PawnException;
 import it.unibo.ai.didattica.competition.tablut.exceptions.StopException;
 import it.unibo.ai.didattica.competition.tablut.exceptions.ThroneException;
+
+
 
 public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.core.search.adversarial.Game<State, Action, State.Turn>{
 
@@ -65,6 +70,7 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 				|| rowTo > state.getBoard().length - 1 || columnTo > state.getBoard().length - 1 || columnFrom < 0
 				|| rowFrom < 0 || rowTo < 0 || columnTo < 0) {
 			this.loggGame.warning("Mossa fuori tabellone");
+			
 			throw new BoardException(a);
 		}
 
@@ -400,21 +406,51 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 		return null;
 	}
 
+	/**
+	 * @param state current state
+	 * @param action action done
+	 * @return cloned state after pawn has been moved and checked if other pawns has been captured
+	 */
 	@Override
-	public State getResult(State arg0, Action arg1) {
-		// TODO Auto-generated method stub
-		return null;
+	public State getResult(State state, Action action) {
+
+		// move pawn
+		state = this.movePawn(state.clone(), action);
+
+		// check the state for any capture
+		if (state.getTurn().equalsTurn("B")) {
+			state = this.checkCaptureWhite(state, action);
+		}else if (state.getTurn().equalsTurn("W")) {
+			state = this.checkCaptureBlack(state, action);
+		}
+		return state;
 	}
 
 	@Override
-	public double getUtility(State arg0, Turn arg1) {
-		// TODO Auto-generated method stub
-		return 0;
+	public double getUtility(State state, State.Turn turn) {
+
+		// if it is a terminal state
+		if ((turn.equals(State.Turn.BLACK) && state.getTurn().equals(State.Turn.BLACKWIN))
+				|| (turn.equals(State.Turn.WHITE) && state.getTurn().equals(State.Turn.WHITEWIN)))
+			return Double.POSITIVE_INFINITY;
+		else if ((turn.equals(State.Turn.BLACK) && state.getTurn().equals(State.Turn.WHITEWIN))
+				|| (turn.equals(State.Turn.WHITE) && state.getTurn().equals(State.Turn.BLACKWIN)))
+			return Double.NEGATIVE_INFINITY;
+
+
+		// if it isn't a terminal state
+		Heuristics heuristics = null;
+		if (turn.equals(State.Turn.WHITE)) {
+			heuristics = new SheepHeuristics(state);
+		} else {
+			heuristics = new WolfHeuristics(state);
+		}
+		return  heuristics.evaluateState();
 	}
 
 	@Override
-	public boolean isTerminal(State arg0) {
-		// TODO Auto-generated method stub
+	public boolean isTerminal(State state) {
+		if(state.getTurn().equals(State.Turn.BLACKWIN) || state.getTurn().equals(State.Turn.WHITEWIN) || state.getTurn().equals(State.Turn.DRAW)) return true;
 		return false;
 	}
 

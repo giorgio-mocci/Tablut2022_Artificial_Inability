@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Tablut/build"/>
+	<classpathentry kind="src" path="Tablut/src"/>
+	<classpathentry kind="lib" path="Tablut/Executables/RandomPlayer.jar"/>
+	<classpathentry kind="lib" path="Tablut/Executables/Server.jar"/>
+	<classpathentry kind="lib" path="Tablut/lib/aima-core.jar"/>
+	<classpathentry kind="lib" path="Tablut/lib/commons-cli-1.4.jar"/>
+	<classpathentry kind="lib" path="Tablut/lib/gson-2.2.2.jar"/>
+	<classpathentry kind="output" path="Tablut/bin"/>
+</classpath>
