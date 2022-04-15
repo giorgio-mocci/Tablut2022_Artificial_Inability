@@ -1,0 +1,60 @@
+PESI ESEMPIO
+private static double weightRhombus = 600;
+private static double weightRowColCover = 450;
+static double weightVictory = -5000;
+static double weightNumberOfWhites = -200;
+static double weightSurroundingBlackPawn = +100;
+static double weightNumberOfBlacks = 170;
+static double weightThreat = -100;
+static double weightBlackNearKing =50;
+
+//Weights indexes
+final static int WEIGHT_VICTORY = 0;
+final static int WEIGHT_RHOMBUS = 1;
+final static int WEIGHTROWCOLCOVER = 2;
+final static int NUMBER_WHITES = 3;
+final static int SURROUNDING_BLACKS = 4;
+final static int NUMBER_BLACKS = 5;
+final static int THREAT = 6;
+final static int BLACK_NEAR_KING = 7;
+
+
+
+
+
+
+
+
+
+
+Periani : https://github.com/Noce99/Tablut/
+        Se il muovere il nero può bloccare il passaggio del re
+        Se mangio il bianco (obv) e quanti ne mangio
+        Se mangio il re (obv)
+        Se mi metto vicino al re
+
+KMF : https://github.com/kmfrick/Tablut2021_Neuromancer
+
+
+        Controllo se la mia possa mi può portare a essere mangiato
+        Calcolo il numero di colonne/righe coperte (esempio le vie di fuga, andare a coprirne una scoperta dovrebbe essere premiato)
+        Mettere in conto il numero dei bianchi/neri, con relativi pesi dopo la mia mossa
+        Calcolo pedine nere vicino al re
+
+TIZI CHE NON CONOSCO :https://github.com/Wadaboa/Tablut/
+        Guardare il quadrante in cui è presente il re, e fare in modo di bloccare le vie di fuga vicine
+
+AlmaZeneca
+        Se il re è fuori dal castello, è caccia all'uomo, andargli vicino deve valere molto
+
+gmurro : https://github.com/gmurro/Tablut
+        bloccare via di fuga in modo rombo (servono 8 pedine)    ATTENZIONE, DOPO ALCUNI TURNI / PEZZI MANGIATI SMETTERE DI PROVARCI
+                              {1,2},       {1,6},
+                        {2,1},                   {2,7},
+
+                        {6,1},                   {6,7},
+                              {7,2},       {7,6}
+
+        controllare pedine nella stessa "croce" del re
+        Se maggioranza schiacciante, allora punto a mangiare, e non bloccare a prescindere (I.e non blocco tutte le vie, ma solo quelle del re, e poi attacco)
+        se il re è nel trono, ho meno di 4 neri, non ha senso andarci
