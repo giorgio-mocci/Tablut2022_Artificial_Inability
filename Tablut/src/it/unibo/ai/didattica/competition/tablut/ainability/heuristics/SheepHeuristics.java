@@ -1,22 +1,12 @@
 package it.unibo.ai.didattica.competition.tablut.ainability.heuristics;
 
-<<<<<<< Updated upstream
-=======
 import it.unibo.ai.didattica.competition.tablut.ainability.domain.Position;
-import it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut;
->>>>>>> Stashed changes
 import it.unibo.ai.didattica.competition.tablut.domain.State;
+import it.unibo.ai.didattica.competition.tablut.domain.State.Pawn;
 
-public class SheepHeuristics extends Heuristics{
+public class SheepHeuristics extends Heuristics {
 	private State state;
 
-<<<<<<< Updated upstream
-	public SheepHeuristics(State state) {
-		super(state);
-=======
-	private static double NUM_BLACK = 16;
-	private static double NUM_WHITE = 9;
-	
 	private static double WEIGHT_WHITE_PAWNS = 0;
 	private static double WEIGHT_BLACK_PAWNS = 0;
 	private static double WEIGHT_VICTORY = Double.POSITIVE_INFINITY;
@@ -54,15 +44,14 @@ public class SheepHeuristics extends Heuristics{
 	 */
 	public void kingPositionAndNumberPawns() {
 		boolean foundKing = false;
-		int row,column;
 		for (int i = 0; i < this.state.getBoard()[0].length; i++) {
 			for (int j = 0; j < this.state.getBoard()[0].length; j++) {
 				if (!foundKing && this.state.getBoard()[i][j].equals(State.Pawn.KING)) { // MATCH! usiamo la found per
 																							// saltare il controllo
 																							// sulla board
 					// nel caso il re sia già stato trovato
-					 row = i + 1; // +1 is necessary because we use 1-9 notation
-					 column = j + 1; // +1 is necessary because we use 1-9 notation
+					int row = i + 1; // +1 is necessary because we use 1-9 notation
+					int column = j + 1; // +1 is necessary because we use 1-9 notation
 					kingPosition = new Position(i, j);
 					foundKing = true;
 				}
@@ -439,20 +428,17 @@ public class SheepHeuristics extends Heuristics{
 			result += WEIGHT_VICTORY;
 			return result;
 		}
-		double numberOfBlackEaten = (double)(this.NUM_BLACK - this.currentNumberOfBlack) / this.NUM_BLACK;
 		// init
 		kingPositionAndNumberPawns();
 		result += WEIGHT_WHITE_PAWNS * this.currentNumberOfWhite + WEIGHT_BLACK_PAWNS * this.currentNumberOfBlack
-				+ WEIGHT_KING_IS_SAFE * kingSafe() + WEIGHT_KING_WAY_TO_ESCAPE + NumberOfKingRowColFree() 
-				+ WEIGHT_WINNING_ROW_COLUMN* winningRowColumn() + WEIGHT_BLACK_EATEN * numberOfBlackEaten ;
+				+ WEIGHT_KING_IS_SAFE * kingSafe() + WEIGHT_KING_WAY_TO_ESCAPE + NumberOfKingRowColFree() + WEIGHT_WINNING_ROW_COLUMN* winningRowColumn();
 
 		/**
 		 * !!!!!!!!!!!!!!!!!!!!!!!!
-		 *  AGGIUNGERE BESTPOSITION? !!!!!
+		 *  AGGIUNGERE FUNZIONE CHE MANGIA NERI E BESTPOSITION? !!!!!
 		 */
 		
 		return result;
->>>>>>> Stashed changes
 	}
 
 }
