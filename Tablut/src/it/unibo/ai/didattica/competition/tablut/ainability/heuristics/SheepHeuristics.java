@@ -7,8 +7,12 @@ import it.unibo.ai.didattica.competition.tablut.domain.State.Pawn;
 public class SheepHeuristics extends Heuristics {
 	private State state;
 
-	private static double WEIGHT_WHITE_PAWNS = 0;
-	private static double WEIGHT_BLACK_PAWNS = 0;
+	private static double NUM_BLACK = 16;
+	private static double NUM_WHITE = 9;
+	
+	//WEIGHT:
+	private static double WEIGHT_WHITE_PAWNS = 50;
+	private static double WEIGHT_BLACK_PAWNS = 50;
 	private static double WEIGHT_VICTORY = Double.POSITIVE_INFINITY;
 	private static double WEIGHT_KING_IS_SAFE = 0;
 	private static double WEIGHT_KING_ON_THRONE = 0;
@@ -430,8 +434,10 @@ public class SheepHeuristics extends Heuristics {
 		}
 		// init
 		kingPositionAndNumberPawns();
+		double numberOfBlackEaten = (double)(NUM_BLACK - this.currentNumberOfBlack) / NUM_BLACK;
 		result += WEIGHT_WHITE_PAWNS * this.currentNumberOfWhite + WEIGHT_BLACK_PAWNS * this.currentNumberOfBlack
-				+ WEIGHT_KING_IS_SAFE * kingSafe() + WEIGHT_KING_WAY_TO_ESCAPE + NumberOfKingRowColFree() + WEIGHT_WINNING_ROW_COLUMN* winningRowColumn();
+				+ WEIGHT_KING_IS_SAFE * kingSafe() + WEIGHT_KING_WAY_TO_ESCAPE + NumberOfKingRowColFree() 
+				+ WEIGHT_WINNING_ROW_COLUMN* winningRowColumn()+ WEIGHT_BLACK_EATEN* numberOfBlackEaten;
 
 		/**
 		 * !!!!!!!!!!!!!!!!!!!!!!!!
