@@ -94,7 +94,7 @@ public class AInabilityClient extends TablutClient {
 
 	        // set type of state and WHITE must do the first player
 	        State state = new StateTablut();
-	        state.setTurn(State.Turn.WHITE);
+	        state.setTurn(State.Turn.BLACK);
 
 	        // set type of game
 	        CustomGameAshtonTablut tablutGame = new CustomGameAshtonTablut(0, -1, "logs", "white_ai", "black_ai");
@@ -121,6 +121,7 @@ public class AInabilityClient extends TablutClient {
 	            // print current state
 	            System.out.println("Current state:");
 	            state = this.getCurrentState();
+	           
 	            System.out.println(state.toString());
 
 
@@ -175,6 +176,7 @@ public class AInabilityClient extends TablutClient {
 	                    System.out.println("\nSearching a suitable move... ");
 
 	                    // search the best move in search tree
+	                    
 	                    Action a = findBestMove(tablutGame, state);
 
 	                    System.out.println("\nAction selected: " + a.toString());

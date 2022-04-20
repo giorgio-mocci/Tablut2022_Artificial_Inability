@@ -8,7 +8,7 @@ import it.unibo.ai.didattica.competition.tablut.domain.State.Pawn;
 
 public class WolfHeuristics extends Heuristics {
 	private State state;
-	private Game game = new CustomGameAshtonTablut(0, 0, null, null, null); //DA CAMBIARE DIOCRISTO
+	
 	// ------------------------------------------------------------------------------------------------------
 	// Setting the custom weight variable : for blackPlayer lower weight (negative)
 	// is better
@@ -254,8 +254,11 @@ public class WolfHeuristics extends Heuristics {
 	}
 	
 	private int NumberOfBlackNearKing() {
+		//System.out.println("----Cerco la posizione del re ----");
 		int number = 0;
 		Position kingPosition = this.getKingPosition();
+		if (kingPosition.getRow() == 1 || kingPosition.getColumn() == 1)return 0;
+		//System.out.println("----il re sta in posizione "+ kingPosition.getRow() + " "+ kingPosition.getColumn() +" ----");
 		//check north
 		if(state.getBoard()[kingPosition.getRow()-1-1][kingPosition.getColumn()-1].equalsPawn(State.Pawn.BLACK.toString())) {
 			number++;
@@ -329,6 +332,8 @@ public class WolfHeuristics extends Heuristics {
 	 * @return number of pawns in danger
 	 */
 	private int numberOfPawnsInDanger() {
+		return 0;
+		/*
 		int number = 0;
 		Pawn [][] board = this.state.getBoard();
 		
@@ -368,6 +373,7 @@ public class WolfHeuristics extends Heuristics {
 			}
 		}		
 		return number;
+		*/
 	}
 	
 	/**
@@ -378,17 +384,17 @@ public class WolfHeuristics extends Heuristics {
 		int number=0;
 		Pawn board[][]= state.getBoard();
 		int Rposition[][] = {
-			  {2,3},       {2,7},
-        {3,2},                   {3,8},
+			  {1,2},       {1,6},
+        {2,3},                   {2,7},
 
-        {7,2},                   {7,8},
-              {8,3},       {8,7}
+        {6,1},                   {6,7},
+              {7,2},       {7,6}
 		};
 		for (int i=0; i<9;i++) {
 			if(board[i][i].equalsPawn(State.Pawn.BLACK.toString() )) number++;
 			//increase only if there is a black pawn on rhombus cells			
 		}	
-		return number;
+		return 0;
 	}
 	
 	

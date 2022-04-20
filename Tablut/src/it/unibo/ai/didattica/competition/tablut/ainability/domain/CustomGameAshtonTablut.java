@@ -428,8 +428,11 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 
 	@Override
 	public double getUtility(State state, State.Turn turn) {
-
+		
+		turn = state.getTurn();
+		//System.out.println("******** "+turn+" ********");
 		// if it is a terminal state
+		
 		if ((turn.equals(State.Turn.BLACK) && state.getTurn().equals(State.Turn.BLACKWIN))
 				|| (turn.equals(State.Turn.WHITE) && state.getTurn().equals(State.Turn.WHITEWIN)))
 			return Double.POSITIVE_INFINITY;

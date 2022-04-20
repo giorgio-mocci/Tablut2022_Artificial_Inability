@@ -12,18 +12,18 @@ public class SheepHeuristics extends Heuristics {
 	
 	//WEIGHT:
 	private static double WEIGHT_WHITE_PAWNS = 50;
-	private static double WEIGHT_BLACK_PAWNS = 50;
+	//private static double WEIGHT_BLACK_PAWNS = -40;
 	private static double WEIGHT_VICTORY = Double.POSITIVE_INFINITY;
-	private static double WEIGHT_KING_IS_SAFE = 0;
+	private static double WEIGHT_KING_IS_SAFE = 150;
 	private static double WEIGHT_KING_ON_THRONE = 0;
 	private static double WEIGHT_KING_NEAR_THRONE = 0;
 	// private static double WEIGHT_KING_NEAR_CITADEL=0;//Put this or consider the
 	// citadel as a black pawn?
-	private static double WEIGHT_WINNING_ROW_COLUMN = 0;// row or colomn that take the king to win
-	private static double WEIGHT_KING_WAY_TO_ESCAPE = 0;// Decidere se fare proporzionale quindi 1 via *1 , 2 vie *2
+	private static double WEIGHT_WINNING_ROW_COLUMN = 60;// row or colomn that take the king to win
+	private static double WEIGHT_KING_WAY_TO_ESCAPE = 100;// Decidere se fare proporzionale quindi 1 via *1 , 2 vie *2
 														// oppure dare un peso
 	// diverso in base alla singola via libera o a 2 o più vie libere
-	private static double WEIGHT_BLACK_EATEN = 0;
+	private static double WEIGHT_BLACK_EATEN = 30;
 
 	private int currentNumberOfWhite;
 	private int currentNumberOfBlack;
@@ -31,6 +31,7 @@ public class SheepHeuristics extends Heuristics {
 
 	public SheepHeuristics(State state) {
 		super(state);
+		this.state = state;
 		currentNumberOfWhite = 0;
 		currentNumberOfBlack = 0;
 		kingPosition = new Position(5, 5);
@@ -136,31 +137,7 @@ public class SheepHeuristics extends Heuristics {
 		return freeLine;
 	}
 
-	private int NumberOfBlackNearKing() {
-		int number = 0;
-
-		// check north
-		if (state.getBoard()[kingPosition.getRow() - 1 - 1][kingPosition.getColumn() - 1]
-				.equalsPawn(State.Pawn.BLACK.toString())) {
-			number++;
-		}
-		// check south
-		if (state.getBoard()[kingPosition.getRow() - 1 + 1][kingPosition.getColumn() - 1]
-				.equalsPawn(State.Pawn.BLACK.toString())) {
-			number++;
-		}
-		// check east
-		if (state.getBoard()[kingPosition.getRow() - 1][kingPosition.getColumn() - 1 + 1]
-				.equalsPawn(State.Pawn.BLACK.toString())) {
-			number++;
-		}
-		// check west
-		if (state.getBoard()[kingPosition.getRow() - 1][kingPosition.getColumn() - 1 - 1]
-				.equalsPawn(State.Pawn.BLACK.toString())) {
-			number++;
-		}
-		return number;
-	}
+	
 
 	/*
 	 * This method check if a given position is a citadel or not
@@ -435,7 +412,7 @@ public class SheepHeuristics extends Heuristics {
 		// init
 		kingPositionAndNumberPawns();
 		double numberOfBlackEaten = (double)(NUM_BLACK - this.currentNumberOfBlack) / NUM_BLACK;
-		result += WEIGHT_WHITE_PAWNS * this.currentNumberOfWhite + WEIGHT_BLACK_PAWNS * this.currentNumberOfBlack
+		result += WEIGHT_WHITE_PAWNS * this.currentNumberOfWhite 
 				+ WEIGHT_KING_IS_SAFE * kingSafe() + WEIGHT_KING_WAY_TO_ESCAPE + NumberOfKingRowColFree() 
 				+ WEIGHT_WINNING_ROW_COLUMN* winningRowColumn()+ WEIGHT_BLACK_EATEN* numberOfBlackEaten;
 
