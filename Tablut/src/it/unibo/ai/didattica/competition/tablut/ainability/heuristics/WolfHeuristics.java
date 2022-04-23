@@ -1,8 +1,8 @@
 package it.unibo.ai.didattica.competition.tablut.ainability.heuristics;
 
-import it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut;
+
 import it.unibo.ai.didattica.competition.tablut.ainability.domain.Position;
-import it.unibo.ai.didattica.competition.tablut.domain.Game;
+
 import it.unibo.ai.didattica.competition.tablut.domain.State;
 import it.unibo.ai.didattica.competition.tablut.domain.State.Pawn;
 
@@ -20,7 +20,7 @@ public class WolfHeuristics extends Heuristics {
 	
 	private static double WEIGHT_RHOMBUS = 30;
 	private static double WEIGHT_ROW_COL_COVER = 10;
-	private static double WEIGHT_VICTORY = Double.NEGATIVE_INFINITY;
+	private static double WEIGHT_VICTORY = Double.POSITIVE_INFINITY;
 	private static double WEIGHT_WHITE_PAWNS = -50; //Has to be a negative value
 	private static double WEIGHT_BLACK_PAWNS = 40;
 	private static double WEIGHT_OPEN_WAYS = 25;
@@ -46,7 +46,7 @@ public class WolfHeuristics extends Heuristics {
 		//the value of numberOfBlackToEatKing is inversely proportional (lower is better)
 		
 		result += WEIGHT_RHOMBUS * this.numberOfPawnsInRhombus() + 
-				  WEIGHT_ROW_COL_COVER * this.NumberOfKingRowColFree() + 
+				  WEIGHT_ROW_COL_COVER * super.NumberOfKingRowColFree(this.getKingPosition()) + 
 				  WEIGHT_WHITE_PAWNS * this.getWhitePawns() + 
 				  WEIGHT_BLACK_PAWNS * this.getBlackPawns() + 
 				  WEIGHT_OPEN_WAYS * this.NumberOfKingFreeWays() +
@@ -81,47 +81,11 @@ public class WolfHeuristics extends Heuristics {
 				if (this.state.getBoard()[i][j].equals(State.Pawn.KING)) { // MATCH!
 					int row = i+1; 		//+1 is necessary because we use 1-9 notation
 					int column = j+1;	//+1 is necessary because we use 1-9 notation
-					Pos = new Position(i, j);
+					Pos = new Position(row, column);
 				}
 			}
 		}
 		return Pos;
-	}
-	/*
-	 * This method check if a given position is a citadel or not
-	 * @param pos position to check
-	 * @return boolean value that state if the position is a citadel or not
-	 * 
-	 */	
-	
-	public boolean isPositionCitadel(Position pos) {	
-		int rowToCheck = pos.getRow();
-		int columnToCheck = pos.getColumn();
-		//Check northen citadels
-		if (rowToCheck == 1 && columnToCheck == 4)return true;
-		if (rowToCheck == 1 && columnToCheck == 5)return true;
-		if (rowToCheck == 1 && columnToCheck == 6)return true;
-		if (rowToCheck == 2 && columnToCheck == 5)return true;
-		
-		//Check eastern citadels
-		if (rowToCheck == 4 && columnToCheck == 1)return true;
-		if (rowToCheck == 5 && columnToCheck == 1)return true;
-		if (rowToCheck == 6 && columnToCheck == 1)return true;
-		if (rowToCheck == 5 && columnToCheck == 2)return true;
-		
-		//Check western citadels
-		if (rowToCheck == 4 && columnToCheck == 9)return true;
-		if (rowToCheck == 5 && columnToCheck == 9)return true;
-		if (rowToCheck == 6 && columnToCheck == 9)return true;
-		if (rowToCheck == 5 && columnToCheck == 8)return true;
-		
-		//Check southern citadels 
-		if (rowToCheck == 9 && columnToCheck == 4)return true;
-		if (rowToCheck == 9 && columnToCheck == 5)return true;
-		if (rowToCheck == 9 && columnToCheck == 6)return true;
-		if (rowToCheck == 8 && columnToCheck == 5)return true;		
-		
-		return false;
 	}
 	
 	private boolean isPawnNearThrone(Position position){			
@@ -161,49 +125,6 @@ public class WolfHeuristics extends Heuristics {
 		return 2;
 	}
 	
-	/**
-	 * this method calculate the number of free Row/column that the king can use to move 
-	 * @return number of free row/column
-	 */
-	//DA TESTARE PER BENE CON DELLE STAMPE DURANTE IL TEST!!!!
-	private int NumberOfKingRowColFree() {
-		Position kingPosition = this.getKingPosition();
-		int freeLine =0;
-		//check north
-		freeLine++;
-		for(int i = kingPosition.getRow()-1;i>1;i--) {
-			if(! state.getPawn(i-1, kingPosition.getColumn()-1).equalsPawn(State.Pawn.EMPTY.toString())) { //match se trovo una posizione con una pedina
-				freeLine --;
-				break;
-			}
-		}
-		//check south
-		freeLine++;
-		for(int i = kingPosition.getRow()+1;i<9;i++) {
-			if(! state.getPawn(i-1, kingPosition.getColumn()-1).equalsPawn(State.Pawn.EMPTY.toString())) { //match se trovo una posizione con una pedina
-				freeLine --;
-				break;
-			}
-		}
-		//check west
-		freeLine++;
-		for(int i = kingPosition.getColumn()-1;i>1;i--) {
-			if(! state.getPawn(kingPosition.getRow()-1, i-1).equalsPawn(State.Pawn.EMPTY.toString())) { //match se trovo una posizione con una pedina
-				freeLine --;
-				break;
-			}
-		}
-		//check east
-		freeLine++;
-		for(int i = kingPosition.getColumn()+1;i<9;i++) {
-			if(! state.getPawn(kingPosition.getRow()-1, i-1).equalsPawn(State.Pawn.EMPTY.toString())) { //match se trovo una posizione con una pedina
-				freeLine --;
-				break;
-			}
-		}
-		
-		return freeLine;	
-	}
 	
 	/**
 	 * this method calculate the number of free ways that the king can use to escape 
@@ -260,19 +181,19 @@ public class WolfHeuristics extends Heuristics {
 		if (kingPosition.getRow() == 1 || kingPosition.getColumn() == 1)return 0;
 		//System.out.println("----il re sta in posizione "+ kingPosition.getRow() + " "+ kingPosition.getColumn() +" ----");
 		//check north
-		if(state.getBoard()[kingPosition.getRow()-1-1][kingPosition.getColumn()-1].equalsPawn(State.Pawn.BLACK.toString())) {
+		if(kingPosition.getRow()-1-1>=0 && state.getBoard()[kingPosition.getRow()-1-1][kingPosition.getColumn()-1].equalsPawn(State.Pawn.BLACK.toString())) {
 			number++;
 		}
 		//check south
-		if(state.getBoard()[kingPosition.getRow()-1+1][kingPosition.getColumn()-1].equalsPawn(State.Pawn.BLACK.toString())) {
+		if(kingPosition.getRow()-1+1<=8 && state.getBoard()[kingPosition.getRow()-1+1][kingPosition.getColumn()-1].equalsPawn(State.Pawn.BLACK.toString())) {
 			number++;
 		}
 		//check east
-		if(state.getBoard()[kingPosition.getRow()-1][kingPosition.getColumn()-1+1].equalsPawn(State.Pawn.BLACK.toString())) {
+		if(kingPosition.getColumn()-1+1 <=8 && state.getBoard()[kingPosition.getRow()-1][kingPosition.getColumn()-1+1].equalsPawn(State.Pawn.BLACK.toString())) {
 			number++;
 		}
 		//check west
-		if(state.getBoard()[kingPosition.getRow()-1][kingPosition.getColumn()-1-1].equalsPawn(State.Pawn.BLACK.toString())) {
+		if(kingPosition.getColumn()-1-1 >=0 && state.getBoard()[kingPosition.getRow()-1][kingPosition.getColumn()-1-1].equalsPawn(State.Pawn.BLACK.toString())) {
 			number++;
 		}		
 		return number;
@@ -286,7 +207,7 @@ public class WolfHeuristics extends Heuristics {
 	private boolean canPawnGoThere(Position pos) {
 		Pawn [][] board = this.state.getBoard();
 		//check north side
-		for(int i=pos.getRow()-1-1;i>1;i--) {
+		for(int i=pos.getRow()-1-1;i>=0;i--) {
 			if(! board[i][pos.getColumn()-1].equalsPawn(State.Pawn.EMPTY.toString()) && ! this.isPositionCitadel(new Position(i+1,pos.getColumn())) ) {
 				//inside this if only if the cells is not empty and is not a citadel
 				if(board[i][pos.getColumn()-1].equalsPawn(State.Pawn.WHITE.toString())){//the first pawn founded is white! DANGER
@@ -304,7 +225,7 @@ public class WolfHeuristics extends Heuristics {
 			}
 		}
 		//check west side
-		for(int i=pos.getColumn()-1-1;i>1;i--) {
+		for(int i=pos.getColumn()-1-1;i>=0;i--) {
 			if(! board[pos.getRow()-1][i].equalsPawn(State.Pawn.EMPTY.toString()) && ! this.isPositionCitadel(new Position(pos.getRow(),i+1)) ) {
 				//inside this if only if the cells is not empty and is not a citadel
 				if(board[pos.getRow()-1][i].equalsPawn(State.Pawn.WHITE.toString())){//the first pawn founded is white! DANGER
@@ -332,8 +253,8 @@ public class WolfHeuristics extends Heuristics {
 	 * @return number of pawns in danger
 	 */
 	private int numberOfPawnsInDanger() {
-		return 0;
-		/*
+		
+
 		int number = 0;
 		Pawn [][] board = this.state.getBoard();
 		
@@ -346,25 +267,25 @@ public class WolfHeuristics extends Heuristics {
 					//Now let's check to adjacent threat already existing
 					//----------------------------------------------------------------------------------------//
 					//check north
-					if(board[row-1-1][column-1].equalsPawn(State.Pawn.WHITE.toString()) ||board[row-1-1][column-1].equalsPawn(State.Pawn.KING.toString()) ||
+					if(row-1-1>=0 && board[row-1-1][column-1].equalsPawn(State.Pawn.WHITE.toString()) ||board[row-1-1][column-1].equalsPawn(State.Pawn.KING.toString()) ||
 							this.isPositionCitadel(new Position(row-1-1,column-1)) || board[row-1-1][column-1].equalsPawn(State.Pawn.THRONE.toString())  )
 					{//we have a potential threat on south side because of bad cells at north
 						if (this.canPawnGoThere(new Position(row+1,column ) ))number++ ;	
 					}
 					//check south	
-					if(board[row-1+1][column-1].equalsPawn(State.Pawn.WHITE.toString()) ||board[row-1+1][column-1].equalsPawn(State.Pawn.KING.toString()) ||
+					if(row-1+1<=8 && board[row-1+1][column-1].equalsPawn(State.Pawn.WHITE.toString()) ||board[row-1+1][column-1].equalsPawn(State.Pawn.KING.toString()) ||
 							this.isPositionCitadel(new Position(row-1+1,column-1)) || board[row-1+1][column-1].equalsPawn(State.Pawn.THRONE.toString())  )
 					{//we have a potential threat on north side because of bad cells at south
 						if (this.canPawnGoThere(new Position(row-1,column ) ))number++ ;	
 					}	
 					//check west
-					if(board[row-1][column-1-1].equalsPawn(State.Pawn.WHITE.toString()) ||board[row-1][column-1-1].equalsPawn(State.Pawn.KING.toString()) ||
+					if(column-1-1>=0 && board[row-1][column-1-1].equalsPawn(State.Pawn.WHITE.toString()) ||board[row-1][column-1-1].equalsPawn(State.Pawn.KING.toString()) ||
 							this.isPositionCitadel(new Position(row-1,column-1-1)) || board[row-1][column-1-1].equalsPawn(State.Pawn.THRONE.toString())  )
 					{//we have a potential threat on east side because of bad cells at west
 						if (this.canPawnGoThere(new Position(row,column +1  ) ))number++ ;	
 					}	
 					//check east
-					if(board[row-1][column-1+1].equalsPawn(State.Pawn.WHITE.toString()) ||board[row-1][column-1+1].equalsPawn(State.Pawn.KING.toString()) ||
+					if(column-1+1 <=8 && board[row-1][column-1+1].equalsPawn(State.Pawn.WHITE.toString()) ||board[row-1][column-1+1].equalsPawn(State.Pawn.KING.toString()) ||
 							this.isPositionCitadel(new Position(row-1,column-1+1)) || board[row-1][column-1+1].equalsPawn(State.Pawn.THRONE.toString())  )
 					{//we have a potential threat on west side because of bad cells at east
 						if (this.canPawnGoThere(new Position(row,column -1  ) ))number++ ;	
@@ -373,7 +294,7 @@ public class WolfHeuristics extends Heuristics {
 			}
 		}		
 		return number;
-		*/
+		
 	}
 	
 	/**
@@ -382,19 +303,24 @@ public class WolfHeuristics extends Heuristics {
 	 */
 	private int numberOfPawnsInRhombus() {
 		int number=0;
-		Pawn board[][]= state.getBoard();
+		
 		int Rposition[][] = {
 			  {1,2},       {1,6},
-        {2,3},                   {2,7},
+        {2,1},                   {2,7},
 
         {6,1},                   {6,7},
               {7,2},       {7,6}
 		};
-		for (int i=0; i<9;i++) {
-			if(board[i][i].equalsPawn(State.Pawn.BLACK.toString() )) number++;
-			//increase only if there is a black pawn on rhombus cells			
-		}	
-		return 0;
+		
+		
+		 
+	      for(int[] position : Rposition) {
+	            if(this.state.getPawn(position[0], position[1]).equals(State.Pawn.BLACK))
+	            	number++;
+	        }
+	       
+		
+		return number;
 	}
 	
 	

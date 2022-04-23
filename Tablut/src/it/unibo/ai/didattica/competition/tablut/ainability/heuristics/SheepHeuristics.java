@@ -7,23 +7,23 @@ import it.unibo.ai.didattica.competition.tablut.domain.State.Pawn;
 public class SheepHeuristics extends Heuristics {
 	private State state;
 
-	private static double NUM_BLACK = 16;
-	private static double NUM_WHITE = 9;
+	//private static double NUM_BLACK = 16;
+	//private static double NUM_WHITE = 9;
 	
 	//WEIGHT:
 	private static double WEIGHT_WHITE_PAWNS = 50;
-	//private static double WEIGHT_BLACK_PAWNS = -40;
+	private static double WEIGHT_BLACK_PAWNS = -40;
 	private static double WEIGHT_VICTORY = Double.POSITIVE_INFINITY;
-	private static double WEIGHT_KING_IS_SAFE = 150;
-	private static double WEIGHT_KING_ON_THRONE = 0;
-	private static double WEIGHT_KING_NEAR_THRONE = 0;
+	private static double WEIGHT_KING_IS_SAFE = 100;
+	//private static double WEIGHT_KING_ON_THRONE = 0;
+	//private static double WEIGHT_KING_NEAR_THRONE = 0;
 	// private static double WEIGHT_KING_NEAR_CITADEL=0;//Put this or consider the
 	// citadel as a black pawn?
 	private static double WEIGHT_WINNING_ROW_COLUMN = 60;// row or colomn that take the king to win
-	private static double WEIGHT_KING_WAY_TO_ESCAPE = 100;// Decidere se fare proporzionale quindi 1 via *1 , 2 vie *2
+	private static double WEIGHT_KING_WAY_TO_ESCAPE = 40;// Decidere se fare proporzionale quindi 1 via *1 , 2 vie *2
 														// oppure dare un peso
 	// diverso in base alla singola via libera o a 2 o più vie libere
-	private static double WEIGHT_BLACK_EATEN = 30;
+	//private static double WEIGHT_BLACK_EATEN = 30;
 
 	private int currentNumberOfWhite;
 	private int currentNumberOfBlack;
@@ -57,7 +57,7 @@ public class SheepHeuristics extends Heuristics {
 					// nel caso il re sia già stato trovato
 					int row = i + 1; // +1 is necessary because we use 1-9 notation
 					int column = j + 1; // +1 is necessary because we use 1-9 notation
-					kingPosition = new Position(i, j);
+					kingPosition = new Position(row, column);
 					foundKing = true;
 				}
 				if (this.state.getBoard()[i][j].equals(State.Pawn.BLACK)) {
@@ -69,176 +69,9 @@ public class SheepHeuristics extends Heuristics {
 		}
 	}
 
-	/**
-	 * this method calculate the number of free Row/column that the king can use to
-	 * move
-	 * 
-	 * @return number of free row/column
-	 */
-	// DA TESTARE PER BENE CON DELLE STAMPE DURANTE IL TEST!!!!
-	private int NumberOfKingRowColFree() {
 
-		int freeLine = 0;
-		// check north
-		freeLine++;
-		for (int i = kingPosition.getRow() - 1; i > 1; i--) {
-			if (!state.getPawn(i - 1, kingPosition.getColumn() - 1).equalsPawn(State.Pawn.EMPTY.toString())) { // match
-																												// se
-																												// trovo
-																												// una
-																												// posizione
-																												// con
-																												// una
-																												// pedina
-				freeLine--;
-				break;
-			}
-		}
-		// check south
-		freeLine++;
-		for (int i = kingPosition.getRow() + 1; i < 9; i++) {
-			if (!state.getPawn(i - 1, kingPosition.getColumn() - 1).equalsPawn(State.Pawn.EMPTY.toString())) { // match
-																												// se
-																												// trovo
-																												// una
-																												// posizione
-																												// con
-																												// una
-																												// pedina
-				freeLine--;
-				break;
-			}
-		}
-		// check west
-		freeLine++;
-		for (int i = kingPosition.getColumn() - 1; i > 1; i--) {
-			if (!state.getPawn(kingPosition.getRow() - 1, i - 1).equalsPawn(State.Pawn.EMPTY.toString())) { // match se
-																											// trovo una
-																											// posizione
-																											// con una
-																											// pedina
-				freeLine--;
-				break;
-			}
-		}
-		// check east
-		freeLine++;
-		for (int i = kingPosition.getColumn() + 1; i < 9; i++) {
-			if (!state.getPawn(kingPosition.getRow() - 1, i - 1).equalsPawn(State.Pawn.EMPTY.toString())) { // match se
-																											// trovo una
-																											// posizione
-																											// con una
-																											// pedina
-				freeLine--;
-				break;
-			}
-		}
-
-		return freeLine;
-	}
 
 	
-
-	/*
-	 * This method check if a given position is a citadel or not
-	 * 
-	 * @param pos position to check
-	 * 
-	 * @return boolean value that state if the position is a citadel or not
-	 * 
-	 */
-
-	public boolean isPositionCitadel(Position pos) {
-		int rowToCheck = pos.getRow();
-		int columnToCheck = pos.getColumn();
-		// Check northen citadels
-		if (rowToCheck == 1 && columnToCheck == 4)
-			return true;
-		if (rowToCheck == 1 && columnToCheck == 5)
-			return true;
-		if (rowToCheck == 1 && columnToCheck == 6)
-			return true;
-		if (rowToCheck == 2 && columnToCheck == 5)
-			return true;
-
-		// Check eastern citadels
-		if (rowToCheck == 4 && columnToCheck == 1)
-			return true;
-		if (rowToCheck == 5 && columnToCheck == 1)
-			return true;
-		if (rowToCheck == 6 && columnToCheck == 1)
-			return true;
-		if (rowToCheck == 5 && columnToCheck == 2)
-			return true;
-
-		// Check western citadels
-		if (rowToCheck == 4 && columnToCheck == 9)
-			return true;
-		if (rowToCheck == 5 && columnToCheck == 9)
-			return true;
-		if (rowToCheck == 6 && columnToCheck == 9)
-			return true;
-		if (rowToCheck == 5 && columnToCheck == 8)
-			return true;
-
-		// Check southern citadels
-		if (rowToCheck == 9 && columnToCheck == 4)
-			return true;
-		if (rowToCheck == 9 && columnToCheck == 5)
-			return true;
-		if (rowToCheck == 9 && columnToCheck == 6)
-			return true;
-		if (rowToCheck == 8 && columnToCheck == 5)
-			return true;
-
-		return false;
-	}
-
-	public boolean isPositionCitadel(int rowToCheck, int columnToCheck) {
-
-		// Check northen citadels
-		if (rowToCheck == 1 && columnToCheck == 4)
-			return true;
-		if (rowToCheck == 1 && columnToCheck == 5)
-			return true;
-		if (rowToCheck == 1 && columnToCheck == 6)
-			return true;
-		if (rowToCheck == 2 && columnToCheck == 5)
-			return true;
-
-		// Check eastern citadels
-		if (rowToCheck == 4 && columnToCheck == 1)
-			return true;
-		if (rowToCheck == 5 && columnToCheck == 1)
-			return true;
-		if (rowToCheck == 6 && columnToCheck == 1)
-			return true;
-		if (rowToCheck == 5 && columnToCheck == 2)
-			return true;
-
-		// Check western citadels
-		if (rowToCheck == 4 && columnToCheck == 9)
-			return true;
-		if (rowToCheck == 5 && columnToCheck == 9)
-			return true;
-		if (rowToCheck == 6 && columnToCheck == 9)
-			return true;
-		if (rowToCheck == 5 && columnToCheck == 8)
-			return true;
-
-		// Check southern citadels
-		if (rowToCheck == 9 && columnToCheck == 4)
-			return true;
-		if (rowToCheck == 9 && columnToCheck == 5)
-			return true;
-		if (rowToCheck == 9 && columnToCheck == 6)
-			return true;
-		if (rowToCheck == 8 && columnToCheck == 5)
-			return true;
-
-		return false;
-	}
-
 	/**
 	 * this function checks if the king is protected in case he is surrounded by
 	 * black pawns
@@ -268,34 +101,34 @@ public class SheepHeuristics extends Heuristics {
 					state.getBoard()[kingRow - 1][kingColumn - 1 - 1].equalsPawn(State.Pawn.WHITE.toString())) // sx
 				result += 0.5; // lontano dall'obbiettivo
 		} else { // ne servono 2 per magiare il re e il re è coperto:
-			Pawn[][] powns = state.getBoard();
+			Pawn[][] pawns = state.getBoard();
 			// non copri la stella oppure nemico sopra e sei coperto sotto:
-			if ((kingRow + 1) != 9
-					&& (powns[kingRow - 1 - 1][kingColumn - 1].equalsPawn(State.Pawn.BLACK.toString())
+			if (kingRow - 1 - 1 >= 0 && kingRow - 1 + 1 <=8 && (kingRow + 1) != 9
+					&& (pawns[kingRow - 1 - 1][kingColumn - 1].equalsPawn(State.Pawn.BLACK.toString())
 							|| isPositionCitadel(kingRow - 1, kingColumn))
-					&& powns[kingRow - 1 + 1][kingColumn - 1].equalsPawn(State.Pawn.WHITE.toString())) {
+					&& pawns[kingRow - 1 + 1][kingColumn - 1].equalsPawn(State.Pawn.WHITE.toString())) {
 				result += 1;
 			}
 			// non copri la stella oppure nemico sotto e sei coperto sopra:
-			if (kingRow - 1 != 1
-					&& (powns[kingRow - 1 + 1][kingColumn - 1].equalsPawn(State.Pawn.BLACK.toString())
+			if (kingRow - 1 + 1 <=8 && kingRow - 1 - 1 >=0 && kingRow - 1 != 1
+					&& (pawns[kingRow - 1 + 1][kingColumn - 1].equalsPawn(State.Pawn.BLACK.toString())
 							|| isPositionCitadel(kingRow + 1, kingColumn))
-					&& powns[kingRow - 1 - 1][kingColumn - 1].equalsPawn(State.Pawn.WHITE.toString())) {
+					&& pawns[kingRow - 1 - 1][kingColumn - 1].equalsPawn(State.Pawn.WHITE.toString())) {
 				result += 1;
 			}
 
 			// non copri la stella oppure nemico dx e sei coperto sx:
-			if (kingColumn - 1 != 1
-					&& (powns[kingRow - 1][kingColumn - 1 + 1].equalsPawn(State.Pawn.BLACK.toString())
+			if (kingColumn - 1 + 1 <=8 && kingColumn - 1 - 1 >=0 && kingColumn - 1 != 1
+					&& (pawns[kingRow - 1][kingColumn - 1 + 1].equalsPawn(State.Pawn.BLACK.toString())
 							|| isPositionCitadel(kingRow, kingColumn + 1))
-					&& powns[kingRow - 1][kingColumn - 1 - 1].equalsPawn(State.Pawn.WHITE.toString())) {
+					&& pawns[kingRow - 1][kingColumn - 1 - 1].equalsPawn(State.Pawn.WHITE.toString())) {
 				result += 1;
 			}
 			// non copri la stella oppure nemico sx e sei coperto dx:
-			if (kingColumn + 1 != 9
-					&& (powns[kingRow - 1][kingColumn - 1 - 1].equalsPawn(State.Pawn.BLACK.toString())
+			if (kingColumn - 1 - 1 >=0 && kingColumn - 1 + 1 <=8 && kingColumn + 1 != 9
+					&& (pawns[kingRow - 1][kingColumn - 1 - 1].equalsPawn(State.Pawn.BLACK.toString())
 							|| isPositionCitadel(kingRow, kingColumn - 1))
-					&& powns[kingRow - 1][kingColumn - 1 + 1].equalsPawn(State.Pawn.WHITE.toString())) {
+					&& pawns[kingRow - 1][kingColumn - 1 + 1].equalsPawn(State.Pawn.WHITE.toString())) {
 				result += 1;
 			}
 
@@ -304,7 +137,7 @@ public class SheepHeuristics extends Heuristics {
 
 	}
 
-	private boolean noPownsInRow(int line) {
+	private boolean noPawnsInRow(int line) {
 
 		int i;
 		for (i = 0; i < 9; i++) {
@@ -316,7 +149,7 @@ public class SheepHeuristics extends Heuristics {
 
 	}
 
-	private boolean noPownsInColumn(int line) {
+	private boolean noPawnsInColumn(int line) {
 
 		int i;
 		for (i = 0; i < 9; i++) {
@@ -383,24 +216,34 @@ public class SheepHeuristics extends Heuristics {
 
 		int result = 0;
 
+		// noPawnsInRow follow the standard 0-8 and kingPosition follow the standard 1-9
+		if ((noPawnsInRow(2) && this.kingPosition.getRow() ==3 ) || (noPawnsInRow(6)&& this.kingPosition.getRow()==7) ||
+			(noPawnsInColumn(2) && this.kingPosition.getColumn()==3) || (noPawnsInColumn(6) && this.kingPosition.getColumn()==7) 
+				) {
+			return 10;
+		}
 		
+	
 
-		if (noPownsInRow(2) && kingArriveRow(2)) {
+
+		if (noPawnsInRow(2) && kingArriveRow(2)) {
 			result+=1;
 		}
-		if (noPownsInRow(6)&& kingArriveRow(6)) {
+		if (noPawnsInRow(6)&& kingArriveRow(6)) {
 			result+=1;
 		}
-		if (noPownsInColumn(2) && kingArriveColumn(2)) {
+		if (noPawnsInColumn(2) && kingArriveColumn(2)) {
 			result+=1;
 		}
-		if (noPownsInColumn(6) && kingArriveColumn(6)) {
+		if (noPawnsInColumn(6) && kingArriveColumn(6)) {
 			result+=1;
 		}
 
 		return result;
 
 	}
+	
+	
 
 	@Override
 	public double evaluateState() {
@@ -411,14 +254,16 @@ public class SheepHeuristics extends Heuristics {
 		}
 		// init
 		kingPositionAndNumberPawns();
-		double numberOfBlackEaten = (double)(NUM_BLACK - this.currentNumberOfBlack) / NUM_BLACK;
+		
+		
 		result += WEIGHT_WHITE_PAWNS * this.currentNumberOfWhite 
-				+ WEIGHT_KING_IS_SAFE * kingSafe() + WEIGHT_KING_WAY_TO_ESCAPE + NumberOfKingRowColFree() 
-				+ WEIGHT_WINNING_ROW_COLUMN* winningRowColumn()+ WEIGHT_BLACK_EATEN* numberOfBlackEaten;
+				+ WEIGHT_KING_IS_SAFE * kingSafe() + WEIGHT_KING_WAY_TO_ESCAPE + NumberOfKingRowColFree(this.kingPosition) 
+				+ WEIGHT_WINNING_ROW_COLUMN* winningRowColumn()+ WEIGHT_BLACK_PAWNS* this.currentNumberOfBlack ;
 
 		/**
 		 * !!!!!!!!!!!!!!!!!!!!!!!!
 		 *  AGGIUNGERE FUNZIONE CHE MANGIA NERI E BESTPOSITION? !!!!!
+		 *  
 		 */
 		
 		return result;
