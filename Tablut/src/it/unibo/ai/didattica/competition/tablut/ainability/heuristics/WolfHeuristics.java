@@ -18,7 +18,7 @@ public class WolfHeuristics extends Heuristics {
 	//private static double WEIGHT_FREE_WAYS_TO_RHOMBUS = 0;
 	
 	
-	private static double WEIGHT_RHOMBUS = 6000;
+	private static double WEIGHT_RHOMBUS = 60;
 	private static double WEIGHT_ROW_COL_COVER = 10;
 	private static double WEIGHT_VICTORY = Double.POSITIVE_INFINITY;
 	private static double WEIGHT_WHITE_PAWNS = -50; //Has to be a negative value
@@ -35,8 +35,6 @@ public class WolfHeuristics extends Heuristics {
 
 	@Override
 	public  double evaluateState() {
-		System.out.println("\nPROVA");
-		System.out.println("\n!!!!!ROMBO!!!: "+WEIGHT_RHOMBUS * this.numberOfPawnsInRhombus() +"\n");
 		double result = 0.0;
 		if(state.getTurn().equalsTurn(State.Turn.BLACKWIN.toString())) {
 			result += WEIGHT_VICTORY;
@@ -47,7 +45,7 @@ public class WolfHeuristics extends Heuristics {
 		WEIGHT_PAWN_TO_EAT_KING = WEIGHT_PAWN_TO_EAT_KING / numberOfBlackToEatKing;
 		//the value of numberOfBlackToEatKing is inversely proportional (lower is better)
 		
-		System.out.println("\n!!!!!ROMBO!!!: "+WEIGHT_RHOMBUS * this.numberOfPawnsInRhombus() +"\n");
+	
 		result += WEIGHT_RHOMBUS * this.numberOfPawnsInRhombus() + 
 				  WEIGHT_ROW_COL_COVER * super.NumberOfKingRowColFree(this.getKingPosition()) + 
 				  WEIGHT_WHITE_PAWNS * this.getWhitePawns() + 
@@ -57,6 +55,7 @@ public class WolfHeuristics extends Heuristics {
 				  WEIGHT_PAWN_TO_EAT_KING + //no needs of multiplication, we have changed this value on line 44
 				  WEIGHT_THREAT * this.numberOfPawnsInDanger();
 				  
+	//	System.out.println("\n!!!!!!!!!!!!!Wolf.... "+result);
 		return result;
 	}
 	

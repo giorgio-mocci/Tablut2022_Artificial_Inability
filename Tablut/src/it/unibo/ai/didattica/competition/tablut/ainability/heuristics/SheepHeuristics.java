@@ -12,7 +12,7 @@ public class SheepHeuristics extends Heuristics {
 	
 	//WEIGHT:
 	private static double WEIGHT_WHITE_PAWNS = 50;
-	private static double WEIGHT_BLACK_PAWNS = -40;
+	private static double WEIGHT_BLACK_PAWNS = -5;
 	private static double WEIGHT_VICTORY = Double.POSITIVE_INFINITY;
 	private static double WEIGHT_KING_IS_SAFE = 100;
 	//private static double WEIGHT_KING_ON_THRONE = 0;
@@ -247,6 +247,7 @@ public class SheepHeuristics extends Heuristics {
 
 	@Override
 	public double evaluateState() {
+		
 		double result = 0.0;
 		if (state.getTurn().equalsTurn(State.Turn.WHITEWIN.toString())) {
 			result += WEIGHT_VICTORY;
@@ -266,6 +267,7 @@ public class SheepHeuristics extends Heuristics {
 		 *  
 		 */
 		
+		//System.out.println("\n!!!!!!!!!!!!!SHeep.... "+result);
 		return result;
 	}
 

@@ -394,9 +394,9 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 
 	
 	@Override
-	public Turn getPlayer(State arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public Turn getPlayer(State state) {
+		
+		return state.getTurn();
 	}
 
 	
@@ -429,8 +429,8 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 	@Override
 	public double getUtility(State state, State.Turn turn) {
 		
-		turn = state.getTurn();
-		//System.out.println("******** "+turn+" ********");
+	   //	turn = state.getTurn();
+		
 		// if it is a terminal state
 		
 		if ((turn.equals(State.Turn.BLACK) && state.getTurn().equals(State.Turn.BLACKWIN))
