@@ -1,0 +1,399 @@
+Apr 23, 2022 11:47:36 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut <init>
+FINE: Players:	random	vs	brAInmates
+Apr 23, 2022 11:47:36 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut <init>
+FINE: Repeated moves allowed:	0	Cache:	-1
+Apr 23, 2022 11:47:36 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut <init>
+FINE: Inizio partita
+Apr 23, 2022 11:47:36 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut <init>
+FINE: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+Apr 23, 2022 11:47:38 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: W Pawn from e6 to f6
+Apr 23, 2022 11:47:38 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:47:38 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 1
+Apr 23, 2022 11:47:38 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOOWOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+Apr 23, 2022 11:47:39 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: B Pawn from d1 to d2
+Apr 23, 2022 11:47:39 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:47:39 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 2
+Apr 23, 2022 11:47:39 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOOOBBOOO
+OOOBBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOOWOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+Apr 23, 2022 11:47:41 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: W Pawn from e3 to g3
+Apr 23, 2022 11:47:41 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:47:41 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 3
+Apr 23, 2022 11:47:41 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOOOBBOOO
+OOOBBOOOO
+OOOOOOWOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOOWOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+Apr 23, 2022 11:47:42 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: B Pawn from e1 to d1
+Apr 23, 2022 11:47:42 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:47:42 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 4
+Apr 23, 2022 11:47:42 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOOBOBOOO
+OOOBBOOOO
+OOOOOOWOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOOWOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+Apr 23, 2022 11:47:44 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: W Pawn from f6 to f7
+Apr 23, 2022 11:47:44 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:47:44 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 5
+Apr 23, 2022 11:47:44 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOOBOBOOO
+OOOBBOOOO
+OOOOOOWOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOOOOOB
+OOOOWWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+Apr 23, 2022 11:47:45 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: B Pawn from d1 to c1
+Apr 23, 2022 11:47:45 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:47:45 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 6
+Apr 23, 2022 11:47:45 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOBOOBOOO
+OOOBBOOOO
+OOOOOOWOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOOOOOB
+OOOOWWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+Apr 23, 2022 11:47:47 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: W Pawn from g3 to g1
+Apr 23, 2022 11:47:47 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:47:47 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 7
+Apr 23, 2022 11:47:47 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOBOOBWOO
+OOOBBOOOO
+OOOOOOOOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOOOOOB
+OOOOWWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+Apr 23, 2022 11:47:48 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: B Pawn from c1 to c2
+Apr 23, 2022 11:47:48 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:47:48 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 8
+Apr 23, 2022 11:47:48 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOOOOBWOO
+OOBBBOOOO
+OOOOOOOOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOOOOOB
+OOOOWWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+Apr 23, 2022 11:47:50 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: W Pawn from g1 to g4
+Apr 23, 2022 11:47:50 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:47:50 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 9
+Apr 23, 2022 11:47:50 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOOOOBOOO
+OOBBBOOOO
+OOOOOOOOO
+BOOOWOWOB
+BBWWKWWBB
+BOOOOOOOB
+OOOOWWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+Apr 23, 2022 11:47:51 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: B Pawn from f1 to f2
+Apr 23, 2022 11:47:51 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:47:51 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 10
+Apr 23, 2022 11:47:51 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOOOOOOOO
+OOBBBBOOO
+OOOOOOOOO
+BOOOWOWOB
+BBWWKWWBB
+BOOOOOOOB
+OOOOWWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+Apr 23, 2022 11:47:53 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: W Pawn from e4 to b4
+Apr 23, 2022 11:47:53 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:47:53 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 11
+Apr 23, 2022 11:47:53 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOOOOOOOO
+OOBBBBOOO
+OOOOOOOOO
+BWOOOOWOB
+BBWWKWWBB
+BOOOOOOOB
+OOOOWWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+Apr 23, 2022 11:47:54 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: B Pawn from e2 to e1
+Apr 23, 2022 11:47:54 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:47:54 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 12
+Apr 23, 2022 11:47:54 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOOOBOOOO
+OOBBOBOOO
+OOOOOOOOO
+BWOOOOWOB
+BBWWKWWBB
+BOOOOOOOB
+OOOOWWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+Apr 23, 2022 11:47:56 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: W Pawn from e5 to e6
+Apr 23, 2022 11:47:56 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:47:56 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 13
+Apr 23, 2022 11:47:56 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOOOBOOOO
+OOBBOBOOO
+OOOOOOOOO
+BWOOOOWOB
+BBWWTWWBB
+BOOOKOOOB
+OOOOWWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+Apr 23, 2022 11:47:58 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: B Pawn from e1 to e2
+Apr 23, 2022 11:47:58 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:47:58 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 14
+Apr 23, 2022 11:47:58 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOOOOOOOO
+OOBBBBOOO
+OOOOOOOOO
+BWOOOOWOB
+BBWWTWWBB
+BOOOKOOOB
+OOOOWWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+Apr 23, 2022 11:48:00 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: W Pawn from g5 to g6
+Apr 23, 2022 11:48:00 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:48:00 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 15
+Apr 23, 2022 11:48:00 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOOOOOOOO
+OOBBBBOOO
+OOOOOOOOO
+BWOOOOWOB
+BBWWTWOBB
+BOOOKOWOB
+OOOOWWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+Apr 23, 2022 11:48:01 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: B Pawn from h5 to g5
+Apr 23, 2022 11:48:01 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:48:01 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkCaptureBlackPawnLeft
+FINE: Pedina bianca rimossa in: f5
+Apr 23, 2022 11:48:01 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Capture! Draw cache cleared!
+Apr 23, 2022 11:48:01 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 1
+Apr 23, 2022 11:48:01 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOOOOOOOO
+OOBBBBOOO
+OOOOOOOOO
+BWOOOOWOB
+BBWWTOBOB
+BOOOKOWOB
+OOOOWWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+Apr 23, 2022 11:48:03 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: W Pawn from e6 to c6
+Apr 23, 2022 11:48:03 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:48:03 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 2
+Apr 23, 2022 11:48:03 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOOOOOOOO
+OOBBBBOOO
+OOOOOOOOO
+BWOOOOWOB
+BBWWTOBOB
+BOKOOOWOB
+OOOOWWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+Apr 23, 2022 11:48:04 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: B Pawn from c2 to c1
+Apr 23, 2022 11:48:04 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:48:04 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 3
+Apr 23, 2022 11:48:04 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOBOOOOOO
+OOOBBBOOO
+OOOOOOOOO
+BWOOOOWOB
+BBWWTOBOB
+BOKOOOWOB
+OOOOWWOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+W
+Apr 23, 2022 11:48:05 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Turn: W Pawn from c6 to c9
+Apr 23, 2022 11:48:05 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
+Apr 23, 2022 11:48:05 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkCaptureWhite
+FINE: Bianco vince con re in c9
+Apr 23, 2022 11:48:05 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Current draw cache size: 4
+Apr 23, 2022 11:48:05 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut checkMove
+FINE: Stato:
+OOBOOOOOO
+OOOBBBOOO
+OOOOOOOOO
+BWOOOOWOB
+BBWWTOBOB
+BOOOOOWOB
+OOOOWWOOO
+OOOOBOOOO
+OOKBBBOOO
+-
+WW
+Apr 23, 2022 11:48:05 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut endGame
+FINE: Stato:
+OOBOOOOOO
+OOOBBBOOO
+OOOOOOOOO
+BWOOOOWOB
+BBWWTOBOB
+BOOOOOWOB
+OOOOWWOOO
+OOOOBOOOO
+OOKBBBOOO
+-
+WW

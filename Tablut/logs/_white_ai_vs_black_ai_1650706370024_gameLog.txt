@@ -1,0 +1,133 @@
+Apr 23, 2022 11:32:50 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut <init>
+FINE: Players:	white_ai	vs	black_ai
+Apr 23, 2022 11:32:50 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut <init>
+FINE: Repeated moves allowed:	0	Cache:	-1
+Apr 23, 2022 11:32:50 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut <init>
+FINE: Inizio partita
+Apr 23, 2022 11:32:50 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut <init>
+FINE: Stato:
+OOOBBBOOO
+OOOOBOOOO
+OOOOWOOOO
+BOOOWOOOB
+BBWWKWWBB
+BOOOWOOOB
+OOOOWOOOO
+OOOOBOOOO
+OOOBBBOOO
+-
+B
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e3 to d3
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e3 to c3
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e3 to b3
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e3 to a3
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e3 to f3
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e3 to g3
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e3 to h3
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e3 to i3
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e4 to d4
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e4 to c4
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e4 to b4
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e4 to f4
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e4 to g4
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e4 to h4
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from c5 to c4
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from c5 to c3
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from c5 to c2
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from c5 to c1
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from c5 to c6
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from c5 to c7
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from c5 to c8
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from c5 to c9
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from d5 to d4
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from d5 to d3
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from d5 to d2
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from d5 to d6
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from d5 to d7
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from d5 to d8
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from f5 to f4
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from f5 to f3
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from f5 to f2
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from f5 to f6
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from f5 to f7
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from f5 to f8
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from g5 to g4
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from g5 to g3
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from g5 to g2
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from g5 to g1
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from g5 to g6
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from g5 to g7
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from g5 to g8
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from g5 to g9
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e6 to d6
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e6 to c6
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e6 to b6
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e6 to f6
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e6 to g6
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e6 to h6
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e7 to d7
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e7 to c7
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e7 to b7
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e7 to a7
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e7 to f7
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e7 to g7
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e7 to h7
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut isPossibleMove
+FINE: Turn: W Pawn from e7 to i7
+Apr 23, 2022 11:32:54 AM it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut movePawn
+FINE: Movimento pedina
