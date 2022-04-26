@@ -7,7 +7,7 @@ public class AInabilityWhiteClient {
 
 
 	public static void main(String[] args) throws UnknownHostException, ClassNotFoundException, IOException {
-	       String[] array = new String[]{"WHITE", "20", "localhost", "debug"};
+	       String[] array = new String[]{"WHITE", "10", "localhost"};
 	       if (args.length>0){
 	            array = new String[]{"WHITE", args[0]};
 	       }

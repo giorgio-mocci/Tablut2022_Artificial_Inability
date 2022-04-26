@@ -18,15 +18,15 @@ public class WolfHeuristics extends Heuristics {
 	//private static double WEIGHT_FREE_WAYS_TO_RHOMBUS = 0;
 	
 	
-	private static double WEIGHT_RHOMBUS = 60;
-	private static double WEIGHT_ROW_COL_COVER = 10;
+	private static double WEIGHT_RHOMBUS = 30; 
+	private static double WEIGHT_ROW_COL_FREE = -20;
 	private static double WEIGHT_VICTORY = Double.POSITIVE_INFINITY;
-	private static double WEIGHT_WHITE_PAWNS = -50; //Has to be a negative value
-	private static double WEIGHT_BLACK_PAWNS = 40;
-	private static double WEIGHT_OPEN_WAYS = 25;
+	private static double WEIGHT_WHITE_PAWNS = -40; //Has to be a negative value
+	private static double WEIGHT_BLACK_PAWNS = 30;
+	private static double WEIGHT_OPEN_WAYS = -1000;
 	private static double WEIGHT_BLACK_NEAR_KING = 60;
-	private static double WEIGHT_PAWN_TO_EAT_KING = 60;
-	private static double WEIGHT_THREAT = -40; // Threat of black pawn to be eaten 
+	private static double WEIGHT_PAWN_TO_EAT_KING = 100;
+	private static double WEIGHT_THREAT = -30; // Threat of black pawn to be eaten 
 
 	public WolfHeuristics(State state) {
 		super(state);
@@ -42,20 +42,17 @@ public class WolfHeuristics extends Heuristics {
 		}	
 		
 		int numberOfBlackToEatKing = this.getBlackNumberToCaptureKing();//Change the weight based on dynamic calculation
-		WEIGHT_PAWN_TO_EAT_KING = WEIGHT_PAWN_TO_EAT_KING / numberOfBlackToEatKing;
+		result += WEIGHT_PAWN_TO_EAT_KING / numberOfBlackToEatKing;
 		//the value of numberOfBlackToEatKing is inversely proportional (lower is better)
 		
-	
 		result += WEIGHT_RHOMBUS * this.numberOfPawnsInRhombus() + 
-				  WEIGHT_ROW_COL_COVER * super.NumberOfKingRowColFree(this.getKingPosition()) + 
+				  WEIGHT_ROW_COL_FREE * super.NumberOfKingRowColFree(this.getKingPosition()) + 
 				  WEIGHT_WHITE_PAWNS * this.getWhitePawns() + 
 				  WEIGHT_BLACK_PAWNS * this.getBlackPawns() + 
 				  WEIGHT_OPEN_WAYS * this.NumberOfKingFreeWays() +
 				  WEIGHT_BLACK_NEAR_KING * this.NumberOfBlackNearKing() + 
-				  WEIGHT_PAWN_TO_EAT_KING + //no needs of multiplication, we have changed this value on line 44
 				  WEIGHT_THREAT * this.numberOfPawnsInDanger();
 				  
-	//	System.out.println("\n!!!!!!!!!!!!!Wolf.... "+result);
 		return result;
 	}
 	
@@ -305,7 +302,8 @@ public class WolfHeuristics extends Heuristics {
 	 */
 	private int numberOfPawnsInRhombus() {
 		
-		if (this.getBlackPawns()<10) return 0;
+	
+		if (this.getBlackPawns()<10 || this.getWhitePawns()<4) return 0;
 		int number=0;
 		
 		int Rposition[][] = {
