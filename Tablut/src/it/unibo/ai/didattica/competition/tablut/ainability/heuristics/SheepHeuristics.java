@@ -51,10 +51,9 @@ public class SheepHeuristics extends Heuristics {
 		boolean foundKing = false;
 		for (int i = 0; i < this.state.getBoard()[0].length; i++) {
 			for (int j = 0; j < this.state.getBoard()[0].length; j++) {
-				if (!foundKing && this.state.getBoard()[i][j].equals(State.Pawn.KING)) { // MATCH! usiamo la found per
-																							// saltare il controllo
-																							// sulla board
-					// nel caso il re sia già stato trovato
+				if (!foundKing && this.state.getBoard()[i][j].equals(State.Pawn.KING)) { 
+																							
+				
 					int row = i + 1; // +1 is necessary because we use 1-9 notation
 					int column = j + 1; // +1 is necessary because we use 1-9 notation
 					kingPosition = new Position(row, column);

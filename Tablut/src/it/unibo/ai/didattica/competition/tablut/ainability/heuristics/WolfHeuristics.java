@@ -24,10 +24,14 @@ public class WolfHeuristics extends Heuristics {
 	private static double WEIGHT_WHITE_PAWNS = -40; //Has to be a negative value
 	private static double WEIGHT_BLACK_PAWNS = 30;
 	private static double WEIGHT_OPEN_WAYS = -1000;
-	private static double WEIGHT_BLACK_NEAR_KING = 60;
+	private  double WEIGHT_BLACK_NEAR_KING = 40;
 	private static double WEIGHT_PAWN_TO_EAT_KING = 100;
 	private static double WEIGHT_THREAT = -30; // Threat of black pawn to be eaten 
 
+	private int currentNumberOfWhite;
+	private int currentNumberOfBlack;
+	private Position kingPosition;
+	
 	public WolfHeuristics(State state) {
 		super(state);
 		this.state = state;
@@ -41,14 +45,22 @@ public class WolfHeuristics extends Heuristics {
 			return result;
 		}	
 		
+		// init
+	    kingPositionAndNumberPawns();
+		
+		if (this.currentNumberOfWhite<=6 && this.currentNumberOfBlack>=10) WEIGHT_BLACK_NEAR_KING=50;
+		if (this.currentNumberOfWhite<=4 && this.currentNumberOfBlack>=8) WEIGHT_BLACK_NEAR_KING=60;
+		
+		
+		
 		int numberOfBlackToEatKing = this.getBlackNumberToCaptureKing();//Change the weight based on dynamic calculation
 		result += WEIGHT_PAWN_TO_EAT_KING / numberOfBlackToEatKing;
 		//the value of numberOfBlackToEatKing is inversely proportional (lower is better)
 		
 		result += WEIGHT_RHOMBUS * this.numberOfPawnsInRhombus() + 
-				  WEIGHT_ROW_COL_FREE * super.NumberOfKingRowColFree(this.getKingPosition()) + 
-				  WEIGHT_WHITE_PAWNS * this.getWhitePawns() + 
-				  WEIGHT_BLACK_PAWNS * this.getBlackPawns() + 
+				  WEIGHT_ROW_COL_FREE * super.NumberOfKingRowColFree(kingPosition) + 
+				  WEIGHT_WHITE_PAWNS * this.currentNumberOfWhite + 
+				  WEIGHT_BLACK_PAWNS * this.currentNumberOfBlack + 
 				  WEIGHT_OPEN_WAYS * this.NumberOfKingFreeWays() +
 				  WEIGHT_BLACK_NEAR_KING * this.NumberOfBlackNearKing() + 
 				  WEIGHT_THREAT * this.numberOfPawnsInDanger();
@@ -57,15 +69,44 @@ public class WolfHeuristics extends Heuristics {
 	}
 	
 	
-	private int getWhitePawns() {
-
-		return state.getNumberOf(Pawn.WHITE);
+	/*
+	 * this method set the position of the king in the board and the number of
+	 * white/back pawns
+	 * 
+	 * @param none
+	 * 
+	 * @return void
+	 */
+	public void kingPositionAndNumberPawns() {
+		boolean foundKing = false;
+		for (int i = 0; i < this.state.getBoard()[0].length; i++) {
+			for (int j = 0; j < this.state.getBoard()[0].length; j++) {
+				if (!foundKing && this.state.getBoard()[i][j].equals(State.Pawn.KING)) { 
+																							
+				
+					int row = i + 1; // +1 is necessary because we use 1-9 notation
+					int column = j + 1; // +1 is necessary because we use 1-9 notation
+					kingPosition = new Position(row, column);
+					foundKing = true;
+				}
+				if (this.state.getBoard()[i][j].equals(State.Pawn.BLACK)) {
+					currentNumberOfBlack++;
+				} else if (this.state.getBoard()[i][j].equals(State.Pawn.WHITE)) {
+					currentNumberOfWhite++;
+				}
+			}
+		}
 	}
 	
-	private int getBlackPawns() {
+	/*private int getWhitePawns() {
+
+		return state.getNumberOf(Pawn.WHITE);
+	}*/
+	
+/*	private int getBlackPawns() {
 
 		return state.getNumberOf(Pawn.BLACK);
-	}
+	}*/
 
 	/*
 	 * this method return the position of the king in the board
@@ -73,7 +114,7 @@ public class WolfHeuristics extends Heuristics {
 	 * @return King position
 	 */
 	
-	public Position getKingPosition() {
+	/*public Position getKingPosition() {
 		Position Pos = null;
 		for (int i = 0; i < this.state.getBoard()[0].length; i++) {
 			for (int j = 0; j < this.state.getBoard()[0].length; j++) {
@@ -85,7 +126,7 @@ public class WolfHeuristics extends Heuristics {
 			}
 		}
 		return Pos;
-	}
+	}*/
 	
 	private boolean isPawnNearThrone(Position position){			
 		if(position.getColumn() == 4 && position.getRow() == 5)return true; //pawn to the left of throne
@@ -113,7 +154,7 @@ public class WolfHeuristics extends Heuristics {
 	 */
 	private int getBlackNumberToCaptureKing() {
 		
-		Position kingPosition = this.getKingPosition();
+		//Position kingPosition = this.getKingPosition();
 		
 		//if king is on throne
 		if (kingPosition.getColumn() == 5 && kingPosition.getRow() == 5) return 4;
@@ -131,7 +172,7 @@ public class WolfHeuristics extends Heuristics {
 	 */
 	//DA TESTARE PER BENE CON DELLE STAMPE DURANTE IL TEST!!!!
 	private int NumberOfKingFreeWays() {
-		Position kingPosition = this.getKingPosition();
+		//Position kingPosition = this.getKingPosition();
 		int freeWays =0;
 		//check north
 		freeWays++;		
@@ -176,7 +217,7 @@ public class WolfHeuristics extends Heuristics {
 	private int NumberOfBlackNearKing() {
 		//System.out.println("----Cerco la posizione del re ----");
 		int number = 0;
-		Position kingPosition = this.getKingPosition();
+		//Position kingPosition = this.getKingPosition();
 		if (kingPosition.getRow() == 1 || kingPosition.getColumn() == 1)return 0;
 		//System.out.println("----il re sta in posizione "+ kingPosition.getRow() + " "+ kingPosition.getColumn() +" ----");
 		//check north
@@ -303,7 +344,7 @@ public class WolfHeuristics extends Heuristics {
 	private int numberOfPawnsInRhombus() {
 		
 	
-		if (this.getBlackPawns()<10 || this.getWhitePawns()<4) return 0;
+		if (this.currentNumberOfBlack<10 || this.currentNumberOfWhite<4) return 0;
 		int number=0;
 		
 		int Rposition[][] = {

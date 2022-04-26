@@ -88,6 +88,7 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 		if (this.citadels.contains(state.getBox(rowTo, columnTo))
 				&& !this.citadels.contains(state.getBox(rowFrom, columnFrom))) {
 			this.loggGame.warning("Mossa che arriva sopra una citadel");
+			
 			throw new CitadelException(a);
 		}
 		if (this.citadels.contains(state.getBox(rowTo, columnTo))
@@ -95,6 +96,7 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 			if (rowFrom == rowTo) {
 				if (columnFrom - columnTo > 5 || columnFrom - columnTo < -5) {
 					this.loggGame.warning("Mossa che arriva sopra una citadel");
+					
 					throw new CitadelException(a);
 				}
 			} else {
