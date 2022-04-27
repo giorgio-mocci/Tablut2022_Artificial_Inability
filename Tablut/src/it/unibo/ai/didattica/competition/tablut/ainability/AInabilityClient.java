@@ -28,7 +28,7 @@ public class AInabilityClient extends TablutClient {
 	    public static void main(String[] args) throws IOException {
 	        int gameType = 4;
 	        String role = "";
-	        String name = "brAInmates";
+	        String name = "ArtificialInability";
 	        String ipAddress = "localhost";
 	        int timeout = 60;
 	        boolean debug = false;
@@ -94,7 +94,7 @@ public class AInabilityClient extends TablutClient {
 
 	        // set type of state and WHITE must do the first player
 	        State state = new StateTablut();
-	        state.setTurn(State.Turn.BLACK);
+	        
 
 	        // set type of game
 	        CustomGameAshtonTablut tablutGame = new CustomGameAshtonTablut(0, -1, "logs", "white_ai", "black_ai");
@@ -135,9 +135,13 @@ public class AInabilityClient extends TablutClient {
 	                    System.out.println("\nSearching a suitable move... ");
 
 	                    // search the best move in search tree
+	                    long startTime = System.nanoTime();
 	                    Action a = findBestMove(tablutGame, state);
+	                    
+                        long stopTime = System.nanoTime();
+                        System.out.println("Time elapsed: " + (double)(stopTime - startTime)/1000000000+ " seconds");
+                        System.out.println("\nAction selected: " + a.toString());
 
-	                    System.out.println("\nAction selected: " + a.toString());
 	                    try {
 	                        this.write(a);
 	                    } catch (ClassNotFoundException | IOException e) {
@@ -176,10 +180,13 @@ public class AInabilityClient extends TablutClient {
 	                    System.out.println("\nSearching a suitable move... ");
 
 	                    // search the best move in search tree
-	                    
+	                    long startTime = System.nanoTime();
 	                    Action a = findBestMove(tablutGame, state);
+	                    
+                        long stopTime = System.nanoTime();
+                        System.out.println("Time elapsed: " + (double)(stopTime - startTime)/1000000000+ " seconds");
+                        System.out.println("\nAction selected: " + a.toString());
 
-	                    System.out.println("\nAction selected: " + a.toString());
 	                    try {
 	                        this.write(a);
 	                    } catch (ClassNotFoundException | IOException e) {

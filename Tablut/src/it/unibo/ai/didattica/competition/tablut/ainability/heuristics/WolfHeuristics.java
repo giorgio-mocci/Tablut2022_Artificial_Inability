@@ -18,10 +18,10 @@ public class WolfHeuristics extends Heuristics {
 	//private static double WEIGHT_FREE_WAYS_TO_RHOMBUS = 0;
 	
 	
-	private static double WEIGHT_RHOMBUS = 30; 
+	private static double WEIGHT_RHOMBUS = 20; 
 	private static double WEIGHT_ROW_COL_FREE = -20;
 	private static double WEIGHT_VICTORY = Double.POSITIVE_INFINITY;
-	private static double WEIGHT_WHITE_PAWNS = -40; //Has to be a negative value
+	private static double WEIGHT_WHITE_PAWNS = -60; //Has to be a negative value
 	private static double WEIGHT_BLACK_PAWNS = 30;
 	private static double WEIGHT_OPEN_WAYS = -1000;
 	private  double WEIGHT_BLACK_NEAR_KING = 40;
