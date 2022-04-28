@@ -247,6 +247,7 @@ public class SheepHeuristics extends Heuristics {
 	@Override
 	public double evaluateState() {
 		
+		
 		double result = 0.0;
 		if (state.getTurn().equalsTurn(State.Turn.WHITEWIN.toString())) {
 			result += WEIGHT_VICTORY;
@@ -266,7 +267,7 @@ public class SheepHeuristics extends Heuristics {
 		 *  
 		 */
 		
-		//System.out.println("\n!!!!!!!!!!!!!SHeep.... "+result);
+		System.out.println("\n!!!!!!!!!!!!!SHeep.... "+result);
 		return result;
 	}
 

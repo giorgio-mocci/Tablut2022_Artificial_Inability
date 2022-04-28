@@ -61,7 +61,6 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 
 	public List<Action> getActions(State state) {
 		State.Turn turn = state.getTurn();
-		
 		List<Action> possibleActions = new ArrayList<Action>();
 
 		int i,j,k;
@@ -72,6 +71,8 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 		for ( i = 0; i < state.getBoard().length; i++) {
 			for ( j = 0; j < state.getBoard().length; j++) {
 
+				
+				
 				// if pawn color is equal of turn color
 				if (state.getPawn(i, j).toString().equals(turn.toString()) ||
 						(state.getPawn(i, j).equals(State.Pawn.KING) && turn.equals(State.Turn.WHITE)) ) {
@@ -154,7 +155,7 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 
 						// break if you are going up to the citadels after exiting
 					      if ((!citadels.contains(state.getBox(i, j)) && citadels.contains(state.getBox(i, k)))||
-					        (citadels.contains(state.getBox(i, j)) && citadels.contains(state.getBox(k, j)) && (j-k)>3)) {
+					        (citadels.contains(state.getBox(i, j)) && citadels.contains(state.getBox(i, k)) && (j-k)>3)) {
 					       break;
 					      }
 
@@ -187,12 +188,13 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 
 					// check cells on the right of the current one
 					for ( k=j+1; k<state.getBoard().length; k++) {
-
+						// if(i==5 && j==0 && k==4)System.out.println("sto controllando a6 to e6");
 
 						// break if you are going up to the citadels after exiting
 					      if ((!citadels.contains(state.getBox(i, j)) && citadels.contains(state.getBox(i, k)))||
-					        (citadels.contains(state.getBox(i, j)) && citadels.contains(state.getBox(k, j)) && (k-j)>3)) {
-					       break;
+					        (citadels.contains(state.getBox(i, j)) && citadels.contains(state.getBox(i, k)) && (k-j)>3)) {
+					    	 // if(i==5 && j==0 && k==4)System.out.println("ho fatto il break");
+					    	  break;
 					      }
 
 						// check if we are moving on a empty cell
@@ -203,6 +205,7 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 
 							 action = null;
 							try {
+								
 								action = new Action(from, to, turn);
 							} catch (IOException e) {
 								e.printStackTrace();
@@ -248,7 +251,6 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 	
 	@Override
 	public Turn[] getPlayers() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -259,10 +261,9 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 	 */
 	@Override
 	public State getResult(State state, Action action) {
-
+		
 		// move pawn
 		state = this.movePawn(state.clone(), action);
-
 		// check the state for any capture
 		if (state.getTurn().equalsTurn("B")) {
 			state = this.checkCaptureWhite(state, action);
@@ -292,6 +293,7 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 		if (turn.equals(State.Turn.WHITE)) {
 			heuristics = new SheepHeuristics(state);
 		} else {
+			//System.out.println(state.getTurn() + "   "+ turn);
 			heuristics = new WolfHeuristics(state);
 		}
 		return  heuristics.evaluateState();

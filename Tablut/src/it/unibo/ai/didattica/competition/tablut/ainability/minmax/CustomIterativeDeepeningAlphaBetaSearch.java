@@ -22,7 +22,8 @@ public class CustomIterativeDeepeningAlphaBetaSearch extends IterativeDeepeningA
 	 * @return evaluation of the state based on player's heuristic.
 	 */
 	@Override
-	protected double eval(State state, State.Turn player) {			
+	protected double eval(State state, State.Turn player) {		
+		//System.out.println(state.getTurn() + "  "+player);
 	    super.eval(state, player); //
 		return game.getUtility(state, player); //return heuristic value based on a state
 	}
@@ -37,7 +38,8 @@ public class CustomIterativeDeepeningAlphaBetaSearch extends IterativeDeepeningA
      */
 	
 	@Override
-	public Action makeDecision(State state) {		
+	public Action makeDecision(State state) {
+		
 		Action a = super.makeDecision(state);		
 		System.out.println("Explored a total of "+getMetrics().get(METRICS_NODES_EXPANDED)+" nodes, reaching a dept limit of "+getMetrics().get(METRICS_MAX_DEPTH));
 		return a;
