@@ -5,10 +5,11 @@ import it.unibo.ai.didattica.competition.tablut.ainability.domain.Position;
 
 import it.unibo.ai.didattica.competition.tablut.domain.State;
 import it.unibo.ai.didattica.competition.tablut.domain.State.Pawn;
+import it.unibo.ai.didattica.competition.tablut.domain.State.Turn;
 
 public class WolfHeuristics extends Heuristics {
 	private State state;
-	
+	private Turn turn;
 	// ------------------------------------------------------------------------------------------------------
 	// Setting the custom weight variable : for blackPlayer lower weight (negative)
 	// is better
@@ -19,25 +20,28 @@ public class WolfHeuristics extends Heuristics {
 	
 	//max heuristics = 2000
 	
-	private static double WEIGHT_RHOMBUS = 5; 
+	
 	private static double WEIGHT_ROW_COL_FREE = 0;
 	
-	private static double WEIGHT_WHITE_PAWNS = 50; 
+	private static double WEIGHT_RHOMBUS = 5; 
+	private static double WEIGHT_WHITE_PAWNS = 55; 
 	private static double WEIGHT_BLACK_PAWNS = 30;
 	private static double WEIGHT_OPEN_WAYS = -200;	
-	private  double WEIGHT_BLACK_NEAR_KING = 20;
+	private  double WEIGHT_BLACK_NEAR_KING = 10;
+	private static double WEIGHT_THREAT = -10; // Threat of black pawn to be eaten 
 	
 	private static double WEIGHT_PAWN_TO_EAT_KING = 0;
-	private static double WEIGHT_THREAT = 30; // Threat of black pawn to be eaten 
+	
 	private static double WEIGHT_ON_THE_HUNT= 50;
 
 	private int currentNumberOfWhite;
 	private int currentNumberOfBlack;
 	private Position kingPosition;
 	
-	public WolfHeuristics(State state) {
+	public WolfHeuristics(State state,Turn turn) {
 		super(state);
 		this.state = state;
+		this.turn = turn;
 	}
 
 	@Override
@@ -62,11 +66,14 @@ public class WolfHeuristics extends Heuristics {
 				  WEIGHT_THREAT * this.numberOfPawnsInDanger();
 		*/
 	    
+	    
+	    
 	    result = WEIGHT_WHITE_PAWNS * (8-this.currentNumberOfWhite) + 
 				 WEIGHT_BLACK_PAWNS * this.currentNumberOfBlack +
-	    		 WEIGHT_OPEN_WAYS * this.NumberOfKingFreeWays() + 
-	    		 WEIGHT_BLACK_NEAR_KING * this.NumberOfBlackNearKing();
-	//	if(state.getTurn().equals(State.Turn.BLACK))return 1280 - result;
+	    		 WEIGHT_OPEN_WAYS * this.NumberOfKingFreeWays() +
+	    		 WEIGHT_BLACK_NEAR_KING * this.NumberOfBlackNearKing() + 
+	    		 WEIGHT_THREAT + this.numberOfPawnsInDanger() +
+	    		WEIGHT_RHOMBUS + this.numberOfPawnsInRhombus();
 		return result;
 	}
 	
@@ -86,7 +93,7 @@ public class WolfHeuristics extends Heuristics {
 					if( i-1 >=1 && board[i-1][j].equalsPawn(State.Pawn.WHITE.toString())  ) {
 						//there is a white pawn above
 						//now let's check if a black pawn can go above it
-						if(this.canPawnGoThere(new Position(i-2+1,j+1), State.Pawn.WHITE.toString())) {
+						if(this.canPawnGoThere(new Position(i-2+1,j+1))) {
 					//		System.out.println("Pawn in position "+i+ " "+j +" is in good position");
 							number++;
 						}
@@ -95,7 +102,7 @@ public class WolfHeuristics extends Heuristics {
 					if( i+1 <=7 && board[i+1][j].equalsPawn(State.Pawn.WHITE.toString())  ) {
 						//there is a white pawn under my pawn
 						//now let's check if a black pawn can go under it
-						if(this.canPawnGoThere(new Position(i+2+1,j+1), State.Pawn.WHITE.toString())) {
+						if(this.canPawnGoThere(new Position(i+2+1,j+1))) {
 							//System.out.println("Pawn in position "+i+ " "+j +" is in good position");
 							number++;
 						}
@@ -104,7 +111,7 @@ public class WolfHeuristics extends Heuristics {
 					if( j-1 >=1 && board[i][j-1].equalsPawn(State.Pawn.WHITE.toString())  ) {
 						//there is a white pawn on the left
 						//now let's check if a black pawn can go left to it
-						if(this.canPawnGoThere(new Position(i+1,j-2+1), State.Pawn.WHITE.toString())) {
+						if(this.canPawnGoThere(new Position(i+1,j-2+1))) {
 							//System.out.println("Pawn in position "+i+ " "+j +" is in good position");
 							number++;
 						}
@@ -113,7 +120,7 @@ public class WolfHeuristics extends Heuristics {
 					if( j+1 <=7 && board[i][j+1].equalsPawn(State.Pawn.WHITE.toString())  ) {
 						//there is a white pawn on the right
 						//now let's check if a black pawn can go right to it
-						if(this.canPawnGoThere(new Position(i+1,j+2+1), State.Pawn.WHITE.toString())) {
+						if(this.canPawnGoThere(new Position(i+1,j+2+1))) {
 							//System.out.println("Pawn in position "+i+ " "+j +" is in good position");
 							number++;
 						}
@@ -308,42 +315,49 @@ public class WolfHeuristics extends Heuristics {
 	 * @param PawnColour to check
 	 * @return boolean value 
 	 */
-	private boolean canPawnGoThere(Position pos, String PawnColour) {
+	
+	
+	
+
+	
+	
+	private boolean canPawnGoThere(Position pos) {
 		Pawn [][] board = this.state.getBoard();
 		//check north side
 		for(int i=pos.getRow()-1-1;i>=0;i--) {
-			if(! board[i][pos.getColumn()-1].equalsPawn(State.Pawn.EMPTY.toString()) && ! this.isPositionCitadel(new Position(i+1,pos.getColumn())) ) {
+			if(! board[i][pos.getColumn()-1].equalsPawn(State.Pawn.EMPTY.toString())  ) {
+					
 				//inside this if only if the cells is not empty and is not a citadel
-				if(board[i][pos.getColumn()-1].equalsPawn(PawnColour)){//the first pawn founded is white! DANGER
+				if(board[i][pos.getColumn()-1].equalsPawn(State.Pawn.WHITE.toString()) || board[i][pos.getColumn()-1].equalsPawn(State.Pawn.KING.toString())){//the first pawn founded is white! DANGER
 					return true;
-				}
+				}else break;//exit for cycle
 			}
 		}
 		//check south side
 		for(int i=pos.getRow()-1+1;i<9;i++) {
-			if(! board[i][pos.getColumn()-1].equalsPawn(State.Pawn.EMPTY.toString()) && ! this.isPositionCitadel(new Position(i+1,pos.getColumn())) ) {
+			if(! board[i][pos.getColumn()-1].equalsPawn(State.Pawn.EMPTY.toString())  ) {
 				//inside this if only if the cells is not empty and is not a citadel
-				if(board[i][pos.getColumn()-1].equalsPawn(PawnColour)){//the first pawn founded is white! DANGER
+				if(board[i][pos.getColumn()-1].equalsPawn(State.Pawn.WHITE.toString()) || board[i][pos.getColumn()-1].equalsPawn(State.Pawn.KING.toString())){//the first pawn founded is white! DANGER
 					return true;
-				}
+				}else break;//exit for cycle
 			}
 		}
 		//check west side
 		for(int i=pos.getColumn()-1-1;i>=0;i--) {
-			if(! board[pos.getRow()-1][i].equalsPawn(State.Pawn.EMPTY.toString()) && ! this.isPositionCitadel(new Position(pos.getRow(),i+1)) ) {
+			if(! board[pos.getRow()-1][i].equalsPawn(State.Pawn.EMPTY.toString())) {
 				//inside this if only if the cells is not empty and is not a citadel
-				if(board[pos.getRow()-1][i].equalsPawn(PawnColour)){//the first pawn founded is white! DANGER
+				if(board[i][pos.getColumn()-1].equalsPawn(State.Pawn.WHITE.toString()) || board[i][pos.getColumn()-1].equalsPawn(State.Pawn.KING.toString())){//the first pawn founded is white! DANGER
 					return true;
-				}
+				}else break;
 			}
 		}
 		//check east side
 		for(int i=pos.getColumn()-1+1;i<9;i++) {
-			if(! board[pos.getRow()-1][i].equalsPawn(State.Pawn.EMPTY.toString()) && ! this.isPositionCitadel(new Position(pos.getRow(),i+1)) ) {
+			if(! board[pos.getRow()-1][i].equalsPawn(State.Pawn.EMPTY.toString())) {
 				//inside this if only if the cells is not empty and is not a citadel
-				if(board[pos.getRow()-1][i].equalsPawn(PawnColour)){//the first pawn founded is white! DANGER
+				if(board[i][pos.getColumn()-1].equalsPawn(State.Pawn.WHITE.toString()) || board[i][pos.getColumn()-1].equalsPawn(State.Pawn.KING.toString())){//the first pawn founded is white! DANGER
 					return true;
-				}
+				}else break;
 			}
 		}
 		
@@ -369,25 +383,25 @@ public class WolfHeuristics extends Heuristics {
 		if(row-1-1>=0 && ( board[row-1-1][column-1].equalsPawn(State.Pawn.WHITE.toString()) ||board[row-1-1][column-1].equalsPawn(State.Pawn.KING.toString()) ||
 				this.isPositionCitadel(new Position(row-1-1,column-1)) || board[row-1-1][column-1].equalsPawn(State.Pawn.THRONE.toString()))  )
 		{//we have a potential threat on south side because of bad cells at north
-			if (row+1<=9 && this.canPawnGoThere(new Position(row+1,column ),State.Pawn.WHITE.toString() ))return true ;	
+			if (row+1<=9 && this.canPawnGoThere(new Position(row+1,column )))return true ;	
 		}
 		//check south	
 		if(row-1+1<=8 && ( board[row-1+1][column-1].equalsPawn(State.Pawn.WHITE.toString()) ||board[row-1+1][column-1].equalsPawn(State.Pawn.KING.toString()) ||
 				this.isPositionCitadel(new Position(row-1+1,column-1)) || board[row-1+1][column-1].equalsPawn(State.Pawn.THRONE.toString())  ))
 		{//we have a potential threat on north side because of bad cells at south
-			if (row-1>=1 && this.canPawnGoThere(new Position(row-1,column ),State.Pawn.WHITE.toString() ))return true ;	
+			if (row-1>=1 && this.canPawnGoThere(new Position(row-1,column ) ))return true ;	
 		}	
 		//check west
 		if(column-1-1>=0 && (board[row-1][column-1-1].equalsPawn(State.Pawn.WHITE.toString()) ||board[row-1][column-1-1].equalsPawn(State.Pawn.KING.toString()) ||
 				this.isPositionCitadel(new Position(row-1,column-1-1)) || board[row-1][column-1-1].equalsPawn(State.Pawn.THRONE.toString())  ))
 		{//we have a potential threat on east side because of bad cells at west
-			if (column +1<=9 && this.canPawnGoThere(new Position(row,column +1  ),State.Pawn.WHITE.toString() ))return true ;	
+			if (column +1<=9 && this.canPawnGoThere(new Position(row,column +1  ) ))return true ;	
 		}	
 		//check east
 		if(column-1+1 <=8 && ( board[row-1][column-1+1].equalsPawn(State.Pawn.WHITE.toString()) ||board[row-1][column-1+1].equalsPawn(State.Pawn.KING.toString()) ||
 				this.isPositionCitadel(new Position(row-1,column-1+1)) || board[row-1][column-1+1].equalsPawn(State.Pawn.THRONE.toString())  ))
 		{//we have a potential threat on west side because of bad cells at east
-			if (column -1 >= 1 && this.canPawnGoThere(new Position(row,column -1  ),State.Pawn.WHITE.toString() ))return true ;	
+			if (column -1 >= 1 && this.canPawnGoThere(new Position(row,column -1  ) ))return true ;	
 		}				
 		
 		return false;
@@ -415,25 +429,25 @@ public class WolfHeuristics extends Heuristics {
 					if(row-1-1>=0 && ( board[row-1-1][column-1].equalsPawn(State.Pawn.WHITE.toString()) ||board[row-1-1][column-1].equalsPawn(State.Pawn.KING.toString()) ||
 							this.isPositionCitadel(new Position(row-1-1,column-1)) || board[row-1-1][column-1].equalsPawn(State.Pawn.THRONE.toString()))  )
 					{//we have a potential threat on south side because of bad cells at north
-						if (row+1<=9 && this.canPawnGoThere(new Position(row+1,column ) ,State.Pawn.WHITE.toString() ))number++ ;	
+						if (row+1<=9 && this.canPawnGoThere(new Position(row+1,column )  ))number++ ;	
 					}
 					//check south	
 					if(row-1+1<=8 && ( board[row-1+1][column-1].equalsPawn(State.Pawn.WHITE.toString()) ||board[row-1+1][column-1].equalsPawn(State.Pawn.KING.toString()) ||
 							this.isPositionCitadel(new Position(row-1+1,column-1)) || board[row-1+1][column-1].equalsPawn(State.Pawn.THRONE.toString())  ))
 					{//we have a potential threat on north side because of bad cells at south
-						if (row-1>=1 && this.canPawnGoThere(new Position(row-1,column ),State.Pawn.WHITE.toString() ))number++ ;	
+						if (row-1>=1 && this.canPawnGoThere(new Position(row-1,column ) ))number++ ;	
 					}	
 					//check west
 					if(column-1-1>=0 && (board[row-1][column-1-1].equalsPawn(State.Pawn.WHITE.toString()) ||board[row-1][column-1-1].equalsPawn(State.Pawn.KING.toString()) ||
 							this.isPositionCitadel(new Position(row-1,column-1-1)) || board[row-1][column-1-1].equalsPawn(State.Pawn.THRONE.toString())  ))
 					{//we have a potential threat on east side because of bad cells at west
-						if (column +1<=9 && this.canPawnGoThere(new Position(row,column +1  ),State.Pawn.WHITE.toString() ))number++ ;	
+						if (column +1<=9 && this.canPawnGoThere(new Position(row,column +1  ) ))number++ ;	
 					}	
 					//check east
 					if(column-1+1 <=8 && ( board[row-1][column-1+1].equalsPawn(State.Pawn.WHITE.toString()) ||board[row-1][column-1+1].equalsPawn(State.Pawn.KING.toString()) ||
 							this.isPositionCitadel(new Position(row-1,column-1+1)) || board[row-1][column-1+1].equalsPawn(State.Pawn.THRONE.toString())  ))
 					{//we have a potential threat on west side because of bad cells at east
-						if (column -1 >= 1 && this.canPawnGoThere(new Position(row,column -1  ),State.Pawn.WHITE.toString() ))number++ ;	
+						if (column -1 >= 1 && this.canPawnGoThere(new Position(row,column -1  )))number++ ;	
 					}						
 				}
 			}

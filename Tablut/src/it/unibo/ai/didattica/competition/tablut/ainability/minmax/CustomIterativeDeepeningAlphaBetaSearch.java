@@ -1,9 +1,10 @@
 package it.unibo.ai.didattica.competition.tablut.ainability.minmax;
 
-import aima.core.search.adversarial.IterativeDeepeningAlphaBetaSearch;
+
 import it.unibo.ai.didattica.competition.tablut.domain.Action;
 import it.unibo.ai.didattica.competition.tablut.domain.State;
 import aima.core.search.adversarial.Game;
+import aima.core.search.adversarial.IterativeDeepeningAlphaBetaSearch;
 
 public class CustomIterativeDeepeningAlphaBetaSearch extends IterativeDeepeningAlphaBetaSearch<State, Action, State.Turn>{
 	

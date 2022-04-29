@@ -62,7 +62,6 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 	public List<Action> getActions(State state) {
 		State.Turn turn = state.getTurn();
 		List<Action> possibleActions = new ArrayList<Action>();
-
 		int i,j,k;
 		String from, to;
 		Action action;
@@ -267,6 +266,7 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 		// check the state for any capture
 		if (state.getTurn().equalsTurn("B")) {
 			state = this.checkCaptureWhite(state, action);
+		//	System.out.println("cerco se il bianco mi mangia una pedina ");
 		}else if (state.getTurn().equalsTurn("W")) {
 			state = this.checkCaptureBlack(state, action);
 		}
@@ -294,7 +294,7 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 			heuristics = new SheepHeuristics(state);
 		} else {
 			//System.out.println(state.getTurn() + "   "+ turn);
-			heuristics = new WolfHeuristics(state);
+			heuristics = new WolfHeuristics(state,turn);
 		}
 		return  heuristics.evaluateState();
 	}
