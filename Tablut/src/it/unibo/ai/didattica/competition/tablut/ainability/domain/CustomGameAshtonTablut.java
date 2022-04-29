@@ -296,7 +296,7 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 			//System.out.println(state.getTurn() + "   "+ turn);
 			heuristics = new WolfHeuristics(state,turn);
 		}
-		return  heuristics.evaluateState();
+		return  (double) heuristics.evaluateState();
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public abstract class Heuristics {
 	}
 
 	
-	public double evaluateState() {
+	public int evaluateState() {
 		return 0;
 	}
 

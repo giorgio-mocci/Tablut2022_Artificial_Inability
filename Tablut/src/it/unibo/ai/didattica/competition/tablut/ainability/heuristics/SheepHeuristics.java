@@ -1,36 +1,44 @@
 package it.unibo.ai.didattica.competition.tablut.ainability.heuristics;
 
-import it.unibo.ai.didattica.competition.tablut.ainability.domain.Position;
+
 import it.unibo.ai.didattica.competition.tablut.domain.State;
 import it.unibo.ai.didattica.competition.tablut.domain.State.Pawn;
 
 public class SheepHeuristics extends Heuristics {
 	private State state;
 
-	private static double NUM_BLACK = 16;
-	//private static double NUM_WHITE = 9;
+	private static int NUM_BLACK = 16;
+	//private static int NUM_WHITE = 9;
 	
 	//WEIGHT:
-	private static double WEIGHT_WHITE_PAWNS = 50;
-	private static double WEIGHT_BLACK_PAWNS = 30;
+	/*private static int WEIGHT_WHITE_PAWNS = 70;
+	private static int WEIGHT_BLACK_PAWNS = 30;
+	private static int WEIGHT_WINNING_ROW_COLUMN = 20;// row or column that take the king to win
+	private static int WEIGHT_KING_IS_SAFE = 100;
+	*/
+	//WEIGHT:
+	private static int WEIGHT_WHITE_PAWNS = 60;
+	private static int WEIGHT_BLACK_PAWNS = 30;
+	private static int WEIGHT_WINNING_ROW_COLUMN = 80;// row or column that take the king to win
+	private static int WEIGHT_KING_IS_SAFE = 10;
 	
-	private static double WEIGHT_KING_IS_SAFE = 50;
-	//private static double WEIGHT_KING_ON_THRONE = 0;
-	//private static double WEIGHT_KING_NEAR_THRONE = 0;
-	// private static double WEIGHT_KING_NEAR_CITADEL=0;//Put this or consider the
+	
+	//private static int WEIGHT_KING_WAY_TO_ESCAPE = 10;// Decidere se fare proporzionale quindi 1 via *1 , 2 vie *2
+	// oppure dare un peso
+
+	//private static int WEIGHT_KING_ON_THRONE = 0;
+	//private static int WEIGHT_KING_NEAR_THRONE = 0;
+	// private static int WEIGHT_KING_NEAR_CITADEL=0;//Put this or consider the
 	// citadel as a black pawn?
-	private static double WEIGHT_WINNING_ROW_COLUMN = 80;// row or colomn that take the king to win
-	private static double WEIGHT_KING_WAY_TO_ESCAPE = 10;// Decidere se fare proporzionale quindi 1 via *1 , 2 vie *2
-														// oppure dare un peso
 	// diverso in base alla singola via libera o a 2 o più vie libere
-	//private static double WEIGHT_BLACK_EATEN = 30;
+	//private static int WEIGHT_BLACK_EATEN = 30;
 
 
 	@Override
-	public double evaluateState() {
+	public int evaluateState() {
 		
 		
-		double result = 0.0;
+		int result = 0;
 		
 		// init
 		kingPositionAndNumberPawns();
@@ -97,7 +105,7 @@ public class SheepHeuristics extends Heuristics {
 	 * 
 	 * @return
 	 */
-	private double kingSafe() {
+	private int kingSafe() {
 
 		int result = 0;
 

@@ -10,30 +10,30 @@ import it.unibo.ai.didattica.competition.tablut.domain.State.Turn;
 public class WolfHeuristics extends Heuristics {
 	private State state;
 	private Turn turn;
-	private static double NUM_WHITE = 8;
+	private static int NUM_WHITE = 8;
 	// ------------------------------------------------------------------------------------------------------
 	// Setting the custom weight variable : for blackPlayer lower weight (negative)
 	// is better
 	// ------------------------------------------------------------------------------------------------------
 
 	//TO DO IF WE HAVE TIME
-	//private static double WEIGHT_FREE_WAYS_TO_RHOMBUS = 0;
+	//private static int WEIGHT_FREE_WAYS_TO_RHOMBUS = 0;
 	
 	//max heuristics = 2000
 	
 	
-	private static double WEIGHT_ROW_COL_FREE = 0;
+	private static int WEIGHT_ROW_COL_FREE = 0;
 	
-	private static double WEIGHT_RHOMBUS = 5; 
-	private static double WEIGHT_WHITE_PAWNS = 55; 
-	private static double WEIGHT_BLACK_PAWNS = 30;
-	private static double WEIGHT_OPEN_WAYS = -200;	
-	private  double WEIGHT_BLACK_NEAR_KING = 10;
-	private static double WEIGHT_THREAT = -10; // Threat of black pawn to be eaten 
+	private static int WEIGHT_RHOMBUS = 5; 
+	private static int WEIGHT_WHITE_PAWNS = 55; 
+	private static int WEIGHT_BLACK_PAWNS = 30;
+	private static int WEIGHT_OPEN_WAYS = -200;	
+	private  int WEIGHT_BLACK_NEAR_KING = 10;
+	private static int WEIGHT_THREAT = -10; // Threat of black pawn to be eaten 
 	
-	private static double WEIGHT_PAWN_TO_EAT_KING = 0;
+	private static int WEIGHT_PAWN_TO_EAT_KING = 0;
 	
-	private static double WEIGHT_ON_THE_HUNT= 50;
+	private static int WEIGHT_ON_THE_HUNT= 50;
 
 	private int currentNumberOfWhite;
 	private int currentNumberOfBlack;
@@ -49,8 +49,8 @@ public class WolfHeuristics extends Heuristics {
 	}
 
 	@Override
-	public  double evaluateState() {		
-		double result = 0;
+	public  int evaluateState() {		
+		int result = 0;
 		
 		// init
 	    kingPositionAndNumberPawns();
