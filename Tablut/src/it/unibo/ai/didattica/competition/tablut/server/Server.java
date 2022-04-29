@@ -1,5 +1,4 @@
 package it.unibo.ai.didattica.competition.tablut.server;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
