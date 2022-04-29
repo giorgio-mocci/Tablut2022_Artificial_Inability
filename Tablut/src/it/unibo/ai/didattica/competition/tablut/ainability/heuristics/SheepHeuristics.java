@@ -16,11 +16,16 @@ public class SheepHeuristics extends Heuristics {
 	private static int WEIGHT_WINNING_ROW_COLUMN = 20;// row or column that take the king to win
 	private static int WEIGHT_KING_IS_SAFE = 100;
 	*/
-	//WEIGHT:
-	private static int WEIGHT_WHITE_PAWNS = 60;
+	//WEIGHT: luca
+	/*private static int WEIGHT_WHITE_PAWNS = 70;
 	private static int WEIGHT_BLACK_PAWNS = 30;
-	private static int WEIGHT_WINNING_ROW_COLUMN = 80;// row or column that take the king to win
-	private static int WEIGHT_KING_IS_SAFE = 10;
+	private static int WEIGHT_WINNING_ROW_COLUMN = 60;// row or column that take the king to win
+	private static int WEIGHT_KING_IS_SAFE = 50;*/
+	//WEIGHT:peppe
+		private static int WEIGHT_WHITE_PAWNS = 75;
+		private static int WEIGHT_BLACK_PAWNS = 20;
+		private static int WEIGHT_WINNING_ROW_COLUMN = 50;// row or column that take the king to win
+		private static int WEIGHT_KING_IS_SAFE = 40;
 	
 	
 	//private static int WEIGHT_KING_WAY_TO_ESCAPE = 10;// Decidere se fare proporzionale quindi 1 via *1 , 2 vie *2
