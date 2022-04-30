@@ -100,8 +100,12 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 
 							//if action is possible add it to possibleActions
 							try {
-								
+								if(state.getPawn(i, j).equals(State.Pawn.KING)) {
+									possibleActions.add(0, action);
+								}else
 								possibleActions.add(action);
+
+								
 
 							} catch (Exception e) {
 
@@ -137,7 +141,11 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 							//if action is possible add it to possibleActions
 							try {
 								
+								if(state.getPawn(i, j).equals(State.Pawn.KING)) {
+									possibleActions.add(0, action);
+								}else
 								possibleActions.add(action);
+
 
 							} catch (Exception e) {
 
@@ -174,7 +182,11 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 							//if action is possible add it to possibleActions
 							try {
 								
+								if(state.getPawn(i, j).equals(State.Pawn.KING)) {
+									possibleActions.add(0, action);
+								}else
 								possibleActions.add(action);
+
 
 							} catch (Exception e) {
 
@@ -213,6 +225,9 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 							//if action is possible add it to possibleActions
 							try {
 								
+								if(state.getPawn(i, j).equals(State.Pawn.KING)) {
+									possibleActions.add(0, action);
+								}else
 								possibleActions.add(action);
 
 							} catch (Exception e) {
@@ -296,7 +311,7 @@ public class CustomGameAshtonTablut extends GameAshtonTablut implements aima.cor
 			//System.out.println(state.getTurn() + "   "+ turn);
 			heuristics = new WolfHeuristics(state,turn);
 		}
-		return  heuristics.evaluateState();
+		return  (double) heuristics.evaluateState();
 	}
 
 	@Override

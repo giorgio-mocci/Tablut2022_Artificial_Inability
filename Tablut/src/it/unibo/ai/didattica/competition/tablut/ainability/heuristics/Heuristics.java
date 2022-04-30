@@ -2,6 +2,7 @@ package it.unibo.ai.didattica.competition.tablut.ainability.heuristics;
 
 import it.unibo.ai.didattica.competition.tablut.ainability.domain.Position;
 import it.unibo.ai.didattica.competition.tablut.domain.State;
+import it.unibo.ai.didattica.competition.tablut.domain.State.Pawn;
 
 public abstract class Heuristics {
 	protected State state;
@@ -11,9 +12,11 @@ public abstract class Heuristics {
 	}
 
 	
-	public double evaluateState() {
+	public int evaluateState() {
 		return 0;
 	}
+
+	
 
 
 	/**
@@ -21,7 +24,7 @@ public abstract class Heuristics {
 	 * @return number of free row/column
 	 */
 	
-	public int NumberOfKingRowColFree(Position kingPosition ) {
+	protected int NumberOfKingRowColFree(Position kingPosition ) {
 
 		int freeLine =0;
 		//check north
@@ -67,7 +70,7 @@ public abstract class Heuristics {
 	 * 
 	 */	
 	
-	public boolean isPositionCitadel(Position pos) {	
+	protected boolean isPositionCitadel(Position pos) {	
 		int rowToCheck = pos.getRow();
 		int columnToCheck = pos.getColumn();
 		//Check northen citadels
@@ -97,7 +100,7 @@ public abstract class Heuristics {
 		return false;
 	}
 	
-	public boolean isPositionCitadel(int rowToCheck, int columnToCheck) {
+	protected boolean isPositionCitadel(int rowToCheck, int columnToCheck) {
 
 		// Check northen citadels
 		if (rowToCheck == 1 && columnToCheck == 4)

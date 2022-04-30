@@ -34,8 +34,8 @@ public class AInabilityClient extends TablutClient {
 	        boolean debug = false;
 
 	        if (args.length < 1) {
-	            System.out.println("You must specify which player you are (WHITE or BLACK)");
-	            System.out.println("USAGE: ./runmyplayer <black|white> <timeout-in-seconds> <server-ip> <debug>");
+	        	System.out.println("Insert player mode! (WHITE or BLACK)");
+	            System.out.println("USAGE: ./runmyplayer <black|white> <timeout-in-seconds> <server-ip> <debug(optional)>");
 	            System.exit(-1);
 	        } else {
 	            role = (args[0]);
@@ -45,7 +45,7 @@ public class AInabilityClient extends TablutClient {
 	                timeout = Integer.parseInt(args[1]);
 	            } catch (NumberFormatException e){
 	                System.out.println("Timeout must be an integer representing seconds");
-	                System.out.println("USAGE: ./runmyplayer <black|white> <timeout-in-seconds> <server-ip> <debug>");
+	                System.out.println("USAGE: ./runmyplayer <black|white> <timeout-in-seconds> <server-ip> <debug(optional)>");
 	                System.exit(-1);
 	            }
 	        }
@@ -54,7 +54,7 @@ public class AInabilityClient extends TablutClient {
 	                timeout = Integer.parseInt(args[1]);
 	            } catch (NumberFormatException e){
 	                System.out.println("Timeout must be an integer representing seconds");
-	                System.out.println("USAGE: ./runmyplayer <black|white> <timeout-in-seconds> <server-ip> <debug>");
+	                System.out.println("USAGE: ./runmyplayer <black|white> <timeout-in-seconds> <server-ip> <debug(optional)>");
 	                System.exit(-1);
 	            }
 	            ipAddress = args[2];
@@ -65,7 +65,7 @@ public class AInabilityClient extends TablutClient {
 	                timeout = Integer.parseInt(args[1]);
 	            } catch (NumberFormatException e){
 	                System.out.println("Timeout must be an integer representing seconds");
-	                System.out.println("USAGE: ./runmyplayer <black|white> <timeout-in-seconds> <server-ip> <debug>");
+	                System.out.println("USAGE: ./runmyplayer <black|white> <timeout-in-seconds> <server-ip> <debug(optional)>");
 	                System.exit(-1);
 	            }
 	            ipAddress = args[2];
@@ -73,7 +73,7 @@ public class AInabilityClient extends TablutClient {
 	                debug = true;
 	            } else {
 	                System.out.println("The last argument can be only 'debug' and it allow to print logs during search");
-	                System.out.println("USAGE: ./runmyplayer <black|white> <timeout-in-seconds> <server-ip> <debug>");
+	                System.out.println("USAGE: ./runmyplayer <black|white> <timeout-in-seconds> <server-ip> <debug(optional)>");
 	                System.exit(-1);
 	            }
 	        }
@@ -180,7 +180,6 @@ public class AInabilityClient extends TablutClient {
 
 	                    // search the best move in search tree
 	                    long startTime = System.nanoTime();
-	                    System.out.println("che bello è il mio turno "+ state.getTurn());
 	                    Action a = findBestMove(tablutGame, state);
 	                    
                         long stopTime = System.nanoTime();
