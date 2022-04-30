@@ -93,26 +93,26 @@ public class SheepHeuristics extends Heuristics {
 					//Now let's check to adjacent threat already existing
 					//----------------------------------------------------------------------------------------//
 					//check north
-					if(row-1-1>=0 &&  board[row-1-1][column-1].equalsPawn(State.Pawn.BLACK.toString())  ||
-							this.isPositionCitadel(row-1-1,column-1) || board[row-1-1][column-1].equalsPawn(State.Pawn.THRONE.toString()))  
+					if(row-1-1>=0 && ( board[row-1-1][column-1].equalsPawn(State.Pawn.BLACK.toString())  ||
+							this.isPositionCitadel(row-1-1,column-1) || board[row-1-1][column-1].equalsPawn(State.Pawn.THRONE.toString()))  )
 					{//we have a potential threat on south side because of bad cells at north
 						if (row+1<=9 && this.canBlackPawnGoThere(row+1,column   ))number++ ;	
 					}
 					//check south	
-					if(row-1+1<=8 && ( board[row-1+1][column-1].equalsPawn(State.Pawn.BLACK.toString()) ) ||
-							this.isPositionCitadel(row-1+1,column-1) || board[row-1+1][column-1].equalsPawn(State.Pawn.THRONE.toString())  )
+					if(row-1+1<=8 && ( board[row-1+1][column-1].equalsPawn(State.Pawn.BLACK.toString())  ||
+							this.isPositionCitadel(row-1+1,column-1) || board[row-1+1][column-1].equalsPawn(State.Pawn.THRONE.toString())  ))
 					{//we have a potential threat on north side because of bad cells at south
 						if (row-1>=1 && this.canBlackPawnGoThere(row-1,column  ))number++ ;	
 					}	
 					//check west
-					if(column-1-1>=0 && (board[row-1][column-1-1].equalsPawn(State.Pawn.BLACK.toString()) ) ||
-							this.isPositionCitadel(row-1,column-1-1) || board[row-1][column-1-1].equalsPawn(State.Pawn.THRONE.toString())  )
+					if(column-1-1>=0 && (board[row-1][column-1-1].equalsPawn(State.Pawn.BLACK.toString())  ||
+							this.isPositionCitadel(row-1,column-1-1) || board[row-1][column-1-1].equalsPawn(State.Pawn.THRONE.toString())  ))
 					{//we have a potential threat on east side because of bad cells at west
 						if (column +1<=9 && this.canBlackPawnGoThere(row,column +1   ))number++ ;	
 					}	
 					//check east
-					if(column-1+1 <=8 && ( board[row-1][column-1+1].equalsPawn(State.Pawn.BLACK.toString()) ) ||
-							this.isPositionCitadel(row-1,column-1+1) || board[row-1][column-1+1].equalsPawn(State.Pawn.THRONE.toString())  )
+					if(column-1+1 <=8 && ( board[row-1][column-1+1].equalsPawn(State.Pawn.BLACK.toString()) ||
+							this.isPositionCitadel(row-1,column-1+1) || board[row-1][column-1+1].equalsPawn(State.Pawn.THRONE.toString())  ))
 					{//we have a potential threat on west side because of bad cells at east
 						if (column -1 >= 1 && this.canBlackPawnGoThere(row,column -1  ))number++ ;	
 					}						
@@ -123,6 +123,8 @@ public class SheepHeuristics extends Heuristics {
 		
 	}
 	
+	
+
 	
 
 	protected boolean canBlackPawnGoThere(int posRow,int posColumn) {
@@ -150,7 +152,7 @@ public class SheepHeuristics extends Heuristics {
 		for(int i=posColumn-1-1;i>=0;i--) {
 			if(! board[posRow-1][i].equalsPawn(State.Pawn.EMPTY.toString())) {
 				//inside this if only if the cells is not empty and is not a citadel
-				if(board[i][posColumn-1].equalsPawn(State.Pawn.BLACK.toString())){//the first pawn founded is white! DANGER
+				if(board[i][posColumn-1].equalsPawn(State.Pawn.BLACK.toString()) ){//the first pawn founded is white! DANGER
 					return true;
 				}else break;
 			}
@@ -159,7 +161,7 @@ public class SheepHeuristics extends Heuristics {
 		for(int i=posColumn-1+1;i<9;i++) {
 			if(! board[posRow-1][i].equalsPawn(State.Pawn.EMPTY.toString())) {
 				//inside this if only if the cells is not empty and is not a citadel
-				if(board[i][posColumn-1].equalsPawn(State.Pawn.BLACK.toString()) ){//the first pawn founded is white! DANGER
+				if(board[i][posColumn-1].equalsPawn(State.Pawn.BLACK.toString())){//the first pawn founded is white! DANGER
 					return true;
 				}else break;
 			}
