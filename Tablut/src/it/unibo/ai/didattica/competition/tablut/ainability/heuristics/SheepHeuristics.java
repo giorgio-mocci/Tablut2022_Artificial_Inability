@@ -26,6 +26,7 @@ public class SheepHeuristics extends Heuristics {
 		private static int WEIGHT_BLACK_PAWNS = 20;
 		private static int WEIGHT_WINNING_ROW_COLUMN = 50;// row or column that take the king to win
 		private static int WEIGHT_KING_IS_SAFE = 40;
+		private static int WEIGHT_OPEN_WAYS = 150;
 	
 	
 	//private static int WEIGHT_KING_WAY_TO_ESCAPE = 10;// Decidere se fare proporzionale quindi 1 via *1 , 2 vie *2
@@ -51,6 +52,7 @@ public class SheepHeuristics extends Heuristics {
 		result += WEIGHT_WHITE_PAWNS * this.currentNumberOfWhite 
 				+ WEIGHT_KING_IS_SAFE * kingSafe()
 				+ WEIGHT_WINNING_ROW_COLUMN* winningRowColumn()
+				+ WEIGHT_OPEN_WAYS * this.NumberOfKingFreeWays() 
 				+ WEIGHT_BLACK_PAWNS* (NUM_BLACK-this.currentNumberOfBlack);
 
 		
@@ -70,8 +72,55 @@ public class SheepHeuristics extends Heuristics {
 		
 	}
 
-	// In un'unica funzione troviamo la posizione del re, delle pedine bianche e
-	// delle nere.
+	/**
+	 * this method calculate the number of free ways that the king can use to escape 
+	 * @return number of free ways
+	 */
+	//DA TESTARE PER BENE CON DELLE STAMPE DURANTE IL TEST!!!!
+	private int NumberOfKingFreeWays() {
+		//Position kingPosition = this.getKingPosition();
+		int freeWays =0;
+		//check north
+		freeWays++;		
+		for(int i = kingPositionRow-1;i>1;i--) {
+			if(! state.getPawn(i-1, kingPositionColumn-1).equalsPawn(State.Pawn.EMPTY.toString()) || //match if a pawn is found on the way to liberty
+				this.isPositionCitadel(i-1,kingPositionColumn-1) ) { //match if a citadel is found on the way to liberty
+				freeWays --;
+				break;
+			}
+		}
+		//check south
+		freeWays++;
+		for(int i = kingPositionRow+1;i<9;i++) {
+			if(! state.getPawn(i-1, kingPositionColumn-1).equalsPawn(State.Pawn.EMPTY.toString())|| //match if a pawn is found on the way to liberty
+					this.isPositionCitadel(i-1,kingPositionColumn-1) ) { //match if a citadel is found on the way to liberty
+				freeWays --;
+				break;
+			}
+		}
+		//check west
+		freeWays++;
+		for(int i = kingPositionColumn-1;i>1;i--) {
+			if(! state.getPawn(kingPositionRow-1, i-1).equalsPawn(State.Pawn.EMPTY.toString())|| //match if a pawn is found on the way to liberty
+					this.isPositionCitadel(kingPositionRow-1,i-1) ) { //match if a citadel is found on the way to liberty
+				freeWays --;
+				break;
+			}
+		}
+		//check east
+		freeWays++;
+		for(int i = kingPositionColumn+1;i<9;i++) {
+			if(! state.getPawn(kingPositionRow-1, i-1).equalsPawn(State.Pawn.EMPTY.toString())|| //match if a pawn is found on the way to liberty
+					this.isPositionCitadel(kingPositionRow-1,i-1) ) { //match if a citadel is found on the way to liberty
+				freeWays --;
+				break;
+			}
+		}
+		
+		return freeWays;	
+	}
+	
+	
 	/*
 	 * this method set the position of the king in the board and the number of
 	 * white/back pawns
