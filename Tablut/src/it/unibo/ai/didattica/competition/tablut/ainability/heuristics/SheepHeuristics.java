@@ -22,11 +22,12 @@ public class SheepHeuristics extends Heuristics {
 	private static int WEIGHT_WINNING_ROW_COLUMN = 60;// row or column that take the king to win
 	private static int WEIGHT_KING_IS_SAFE = 50;*/
 	//WEIGHT:peppe
-		private static int WEIGHT_WHITE_PAWNS = 75;
-		private static int WEIGHT_BLACK_PAWNS = 20;
+		private static int WEIGHT_WHITE_PAWNS = 70;
+		private static int WEIGHT_BLACK_PAWNS = 25;
 		private static int WEIGHT_WINNING_ROW_COLUMN = 50;// row or column that take the king to win
 		private static int WEIGHT_KING_IS_SAFE = 40;
-		private static int WEIGHT_OPEN_WAYS = 150;
+		private static int WEIGHT_THREAT = -10; // Threat of black pawn to be eaten 
+		//private static int WEIGHT_OPEN_WAYS = 30;
 	
 	
 	//private static int WEIGHT_KING_WAY_TO_ESCAPE = 10;// Decidere se fare proporzionale quindi 1 via *1 , 2 vie *2
@@ -52,7 +53,7 @@ public class SheepHeuristics extends Heuristics {
 		result += WEIGHT_WHITE_PAWNS * this.currentNumberOfWhite 
 				+ WEIGHT_KING_IS_SAFE * kingSafe()
 				+ WEIGHT_WINNING_ROW_COLUMN* winningRowColumn()
-				+ WEIGHT_OPEN_WAYS * this.NumberOfKingFreeWays() 
+				+  WEIGHT_THREAT + this.numberOfPawnsInDanger()
 				+ WEIGHT_BLACK_PAWNS* (NUM_BLACK-this.currentNumberOfBlack);
 
 		
@@ -72,6 +73,10 @@ public class SheepHeuristics extends Heuristics {
 		
 	}
 
+	
+	
+
+	
 	/**
 	 * this method calculate the number of free ways that the king can use to escape 
 	 * @return number of free ways
@@ -129,7 +134,7 @@ public class SheepHeuristics extends Heuristics {
 	 * 
 	 * @return void
 	 */
-	public void kingPositionAndNumberPawns() {
+	private void kingPositionAndNumberPawns() {
 		boolean foundKing = false;
 		for (int i = 0; i < this.state.getBoard()[0].length; i++) {
 			for (int j = 0; j < this.state.getBoard()[0].length; j++) {
