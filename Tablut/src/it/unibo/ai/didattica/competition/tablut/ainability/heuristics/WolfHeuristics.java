@@ -393,7 +393,7 @@ public class WolfHeuristics extends Heuristics {
 		return freeWays;	
 	}
 	
-	private int NumberOfBlackNearKing() {
+	/*private int NumberOfBlackNearKing() {
 		//System.out.println("----Cerco la posizione del re ----");
 		int number = 0;
 		//System.out.println("----il re sta in posizione "+ kingPositionRow + " "+ kingPositionColumn +" ----");
@@ -414,7 +414,39 @@ public class WolfHeuristics extends Heuristics {
 			number++;
 		}		
 		return number;
+	}*/
+	
+	private int NumberOfBlackNearKing() {
+		//System.out.println("----Cerco la posizione del re ----");
+		int number = 0;
+		//System.out.println("----il re sta in posizione "+ kingPositionRow + " "+ kingPositionColumn +" ----");
+		//check north
+		if(kingPositionRow-1-1>=0 && 
+									(state.getBoard()[kingPositionRow-1-1][kingPositionColumn-1].equalsPawn(State.Pawn.BLACK.toString()) ||
+									this.isPositionCitadel(kingPositionRow-1, kingPositionColumn)	)) {
+			number++;
+		}
+		//check south
+		if(kingPositionRow-1+1<=8 && (
+										state.getBoard()[kingPositionRow-1+1][kingPositionColumn-1].equalsPawn(State.Pawn.BLACK.toString()) ||
+										this.isPositionCitadel(kingPositionRow+1, kingPositionColumn))) {
+			number++;
+		}
+		//check east
+		if(kingPositionColumn-1+1 <=8 && (state.getBoard()[kingPositionRow-1][kingPositionColumn-1+1].equalsPawn(State.Pawn.BLACK.toString()) ||
+											this.isPositionCitadel(kingPositionRow, kingPositionColumn+1))
+				) {
+			number++;
+		}
+		//check west
+		if(kingPositionColumn-1-1 >=0 && (state.getBoard()[kingPositionRow-1][kingPositionColumn-1-1].equalsPawn(State.Pawn.BLACK.toString()) ||
+											this.isPositionCitadel(kingPositionRow, kingPositionColumn-1))
+				) {
+			number++;
+		}		
+		return number;
 	}
+	
 	
 	/**
 	 * this method check if a pawn of the the given colour  can go in a certain given position
