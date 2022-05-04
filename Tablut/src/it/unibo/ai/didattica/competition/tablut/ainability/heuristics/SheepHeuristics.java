@@ -316,9 +316,8 @@ public class SheepHeuristics extends Heuristics {
 	 * this function checks if the king is protected in case he is surrounded by
 	 * black pawns
 	 * 
-	 * @return
+	 * @return result
 	 */
-	//DA COMMENTARE E SISTEMARE DA MARCO O LUCA
 	@SuppressWarnings("unused")
 	private int kingSafe() {
 
@@ -328,22 +327,22 @@ public class SheepHeuristics extends Heuristics {
 
 		if ((kingPositionRow == 5 && kingPositionColumn >= 4 && kingPositionColumn <= 6)
 				|| (kingPositionColumn == 5 && kingPositionRow >= 4 && kingPositionRow <= 6)) {
-			// il re è sul trono e un bianco lo protegge:
+			//the King is on the throne and a white pawn defend him:
 			if (pawns[kingPositionRow - 1 - 1][kingPositionColumn - 1].equalsPawn(State.Pawn.WHITE.toString()) || // sopra
 					pawns[kingPositionRow - 1 + 1][kingPositionColumn - 1].equalsPawn(State.Pawn.WHITE.toString()) || // sotto
 					pawns[kingPositionRow - 1][kingPositionColumn - 1 + 1].equalsPawn(State.Pawn.WHITE.toString()) || // dx
 					pawns[kingPositionRow - 1][kingPositionColumn - 1 - 1].equalsPawn(State.Pawn.WHITE.toString())) // sx
 				result += 2;
-		} else { // ne servono 2 per magiare il re e il re è coperto:
+		} else { //needs 2 pawns to eat the King and the King is cover:
 
-			// non copri la stella oppure nemico sopra e sei coperto sotto:
+			//don't cover the star or the enemy above and u're cover under:
 			if (kingPositionRow - 1 - 1 >= 0 && kingPositionRow - 1 + 1 <= 8 && (kingPositionRow + 1) != 9
 					&& (pawns[kingPositionRow - 1 - 1][kingPositionColumn - 1].equalsPawn(State.Pawn.BLACK.toString())
 							|| isPositionCitadel(kingPositionRow - 1, kingPositionColumn))
 					&& pawns[kingPositionRow - 1 + 1][kingPositionColumn - 1].equalsPawn(State.Pawn.WHITE.toString())) {
 				result += 1;
 			}
-			// non copri la stella oppure nemico sotto e sei coperto sopra:
+			//don't cover the star or the enemy under and u're cover above:
 			if (kingPositionRow - 1 + 1 <= 8 && kingPositionRow - 1 - 1 >= 0 && kingPositionRow - 1 != 1
 					&& (pawns[kingPositionRow - 1 + 1][kingPositionColumn - 1].equalsPawn(State.Pawn.BLACK.toString())
 							|| isPositionCitadel(kingPositionRow + 1, kingPositionColumn))
@@ -351,14 +350,14 @@ public class SheepHeuristics extends Heuristics {
 				result += 1;
 			}
 
-			// non copri la stella oppure nemico dx e sei coperto sx:
+			//don't cover the star or the enemy right and u're cover left:
 			if (kingPositionColumn - 1 + 1 <= 8 && kingPositionColumn - 1 - 1 >= 0 && kingPositionColumn - 1 != 1
 					&& (pawns[kingPositionRow - 1][kingPositionColumn - 1 + 1].equalsPawn(State.Pawn.BLACK.toString())
 							|| isPositionCitadel(kingPositionRow, kingPositionColumn + 1))
 					&& pawns[kingPositionRow - 1][kingPositionColumn - 1 - 1].equalsPawn(State.Pawn.WHITE.toString())) {
 				result += 1;
 			}
-			// non copri la stella oppure nemico sx e sei coperto dx:
+			//don't cover the star or the enemy left and u're cover right:
 			if (kingPositionColumn - 1 - 1 >= 0 && kingPositionColumn - 1 + 1 <= 8 && kingPositionColumn + 1 != 9
 					&& (pawns[kingPositionRow - 1][kingPositionColumn - 1 - 1].equalsPawn(State.Pawn.BLACK.toString())
 							|| isPositionCitadel(kingPositionRow, kingPositionColumn - 1))
@@ -371,11 +370,17 @@ public class SheepHeuristics extends Heuristics {
 
 	}
 
+	/**
+	 * check if there aren't pawn on the row
+	 * 
+	 * @param line
+	 * @return
+	 */
 	private boolean noPawnsInRow(int line) {
 
 		int i;
 		for (i = 0; i < 9; i++) {
-			if (!state.getPawn(line, i).equalsPawn(State.Pawn.EMPTY.toString())) {
+			if (!state.getPawn(line, i).equalsPawn(State.Pawn.EMPTY.toString())) { 
 				return false;
 			}
 		}
@@ -383,6 +388,12 @@ public class SheepHeuristics extends Heuristics {
 
 	}
 
+	/**
+	 * check if there aren't pawn on the column
+	 * 
+	 * @param line
+	 * @return
+	 */
 	private boolean noPawnsInColumn(int line) {
 
 		int i;
@@ -395,6 +406,12 @@ public class SheepHeuristics extends Heuristics {
 
 	}
 	
+	/**
+	 * check if the King can go on the column
+	 * 
+	 * @param line
+	 * @return
+	 */
 	private boolean kingArriveColumn(int line) {
 	    int i;    
 
@@ -416,7 +433,12 @@ public class SheepHeuristics extends Heuristics {
 
 	  }
 	  
-	  
+	  /**
+	   * check if the King can go on the row
+	   * 
+	   * @param line
+	   * @return
+	   */
 	  private boolean kingArriveRow(int line) {
 	    int i;    
 
@@ -437,6 +459,12 @@ public class SheepHeuristics extends Heuristics {
 	    return true;
 
 	  }
+	  
+	  /**
+	   * check if the King is or can go on one of the winning columns/rows
+	   * 
+	   * @return
+	   */
 	private int winningRowColumn() {
 
 		int result = 0;
