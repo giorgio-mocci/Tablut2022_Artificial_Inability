@@ -16,24 +16,21 @@ public class CustomIterativeDeepeningAlphaBetaSearch extends IterativeDeepeningA
 	/**
 	 * This method produces value for all states.
 	 * If the state is terminal this implementation returns POSITIVE.INFINITY or NEGATIVE.INFINITY.
-	 * Otherwise it returns the heuristic value.
+	 * Otherwise it returns the AInability's heuristic value.
 	 * 
 	 * @param state current state
 	 * @param player current player
-	 * @return evaluation of the state based on player's heuristic.
+	 * @return evaluation of the state based on AInability's player's heuristic.
 	 */
 	@Override
-	protected double eval(State state, State.Turn player) {		
-		//System.out.println(state.getTurn() + "  "+player);
+	protected double eval(State state, State.Turn player) {			
 	    super.eval(state, player); //
 		return game.getUtility(state, player); //return heuristic value based on a state
 	}
 	
 	 /**
      * Method controlling the search. It is based on iterative
-     * deepening and tries to make to a good decision in limited time.
-     * It is overrided to print metrics.
-     * 
+     * deepening and tries to make to a good decision in limited time.     
      * @param state current state.
 	 * @return best action.
      */

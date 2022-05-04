@@ -7,11 +7,12 @@ import it.unibo.ai.didattica.competition.tablut.domain.State.Pawn;
 public abstract class Heuristics {
 	protected State state;
 	
+	//costructor
 	public Heuristics(State state) {
 		this.state=state;
 	}
 
-	
+	//to be overrided
 	public int evaluateState() {
 		return 0;
 	}
@@ -21,9 +22,9 @@ public abstract class Heuristics {
 
 	/**
 	 * this method calculate the number of free Row/column that the king can use to move 
+	 * @param kingPosition king position
 	 * @return number of free row/column
-	 */
-	
+	 */	
 	protected int NumberOfKingRowColFree(Position kingPosition ) {
 
 		int freeLine =0;
@@ -63,7 +64,7 @@ public abstract class Heuristics {
 		return freeLine;	
 	}
 
-	/*
+	/**
 	 * This method check if a given position is a citadel or not
 	 * @param pos position to check
 	 * @return boolean value that state if the position is a citadel or not
@@ -99,7 +100,12 @@ public abstract class Heuristics {
 		
 		return false;
 	}
-	
+	/**
+	 * This method check if a given position is a citadel or not
+	 * @param pos position to check
+	 * @return boolean value that state if the position is a citadel or not
+	 * 
+	 */	
 	protected boolean isPositionCitadel(int rowToCheck, int columnToCheck) {
 
 		// Check northen citadels
@@ -144,5 +150,7 @@ public abstract class Heuristics {
 
 		return false;
 	}
+	
+	
 
 }

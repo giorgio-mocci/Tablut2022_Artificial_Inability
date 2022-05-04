@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import it.unibo.ai.didattica.competition.tablut.ainability.domain.CustomGameAshtonTablut;
 import it.unibo.ai.didattica.competition.tablut.ainability.minmax.CustomIterativeDeepeningAlphaBetaSearch;
@@ -18,11 +19,17 @@ public class AInabilityClient extends TablutClient {
 
 	    private int game;
 	    private boolean debug;
+	    private ArrayList<String> SheepAphorism;
+	    private ArrayList<String> WolfAphorism;
+	    private Random rand = new Random();
 
 	    public AInabilityClient(String player, String name, int timeout, String ipAddress, int game, boolean debug) throws UnknownHostException, IOException {
 	        super(player, name, timeout, ipAddress);
 	        this.game = game;
+	        AInabilityAphorism aphorism = new AInabilityAphorism();
 	        this.debug = debug;
+	        this.SheepAphorism = aphorism.getSheepAphorism();
+	        this.WolfAphorism = aphorism.getWolfAphorism();
 	    }
 
 	    public static void main(String[] args) throws IOException {
@@ -35,7 +42,7 @@ public class AInabilityClient extends TablutClient {
 
 	        if (args.length < 1) {
 	        	System.out.println("Insert player mode! (WHITE or BLACK)");
-	            System.out.println("USAGE: ./runmyplayer <black|white> <timeout-in-seconds> <server-ip> <debug(optional)>");
+	            System.out.println("USAGE: ./runmyplayer <BLACK|WHITE> <timeout-in-seconds> <server-ip> <debug(optional)>");
 	            System.exit(-1);
 	        } else {
 	            role = (args[0]);
@@ -45,7 +52,7 @@ public class AInabilityClient extends TablutClient {
 	                timeout = Integer.parseInt(args[1]);
 	            } catch (NumberFormatException e){
 	                System.out.println("Timeout must be an integer representing seconds");
-	                System.out.println("USAGE: ./runmyplayer <black|white> <timeout-in-seconds> <server-ip> <debug(optional)>");
+	                System.out.println("USAGE: ./runmyplayer <BLACK|WHITE> <timeout-in-seconds> <server-ip> <debug(optional)>");
 	                System.exit(-1);
 	            }
 	        }
@@ -54,7 +61,7 @@ public class AInabilityClient extends TablutClient {
 	                timeout = Integer.parseInt(args[1]);
 	            } catch (NumberFormatException e){
 	                System.out.println("Timeout must be an integer representing seconds");
-	                System.out.println("USAGE: ./runmyplayer <black|white> <timeout-in-seconds> <server-ip> <debug(optional)>");
+	                System.out.println("USAGE: ./runmyplayer <BLACK|WHITE> <timeout-in-seconds> <server-ip> <debug(optional)>");
 	                System.exit(-1);
 	            }
 	            ipAddress = args[2];
@@ -65,15 +72,15 @@ public class AInabilityClient extends TablutClient {
 	                timeout = Integer.parseInt(args[1]);
 	            } catch (NumberFormatException e){
 	                System.out.println("Timeout must be an integer representing seconds");
-	                System.out.println("USAGE: ./runmyplayer <black|white> <timeout-in-seconds> <server-ip> <debug(optional)>");
+	                System.out.println("USAGE: ./runmyplayer <BLACK|WHITE> <timeout-in-seconds> <server-ip> <debug(optional)>");
 	                System.exit(-1);
 	            }
 	            ipAddress = args[2];
 	            if(args[3].equals("debug")) {
 	                debug = true;
 	            } else {
-	                System.out.println("The last argument can be only 'debug' and it allow to print logs during search");
-	                System.out.println("USAGE: ./runmyplayer <black|white> <timeout-in-seconds> <server-ip> <debug(optional)>");
+	                System.out.println("The last argument can be only 'debug'");
+	                System.out.println("USAGE: ./runmyplayer <BLACK|WHITE> <timeout-in-seconds> <server-ip> <debug(optional)>");
 	                System.exit(-1);
 	            }
 	        }
@@ -93,14 +100,13 @@ public class AInabilityClient extends TablutClient {
 	        }
 
 	        // set type of state and WHITE must do the first player
-	        State state = new StateTablut();
-	      
-	        // set type of game
+	        State state = new StateTablut();	      
+	        
 	        CustomGameAshtonTablut tablutGame = new CustomGameAshtonTablut(0, -1, "logs", "white_ai", "black_ai");
 
 
 	        // attributes depends to parameters passed to main
-	        System.out.println("Player: " + (this.getPlayer().equals(State.Turn.BLACK) ? "BLACK" : "WHITE" ));
+	        System.out.println("AInabilityClient: " + (this.getPlayer().equals(State.Turn.BLACK) ? "BLACK" : "WHITE" ));
 	        System.out.println("Timeout: " + this.timeout +" s");
 	        System.out.println("Server: " + this.serverIp);
 	        System.out.println("Debug mode: " + this.debug+"\n");
@@ -109,7 +115,7 @@ public class AInabilityClient extends TablutClient {
 	        // still alive until you are playing
 	        while (true) {
 
-	            // update the current state from the server
+	            // read the current state from the server
 	            try {
 	                this.read();
 	            } catch (ClassNotFoundException | IOException e1) {
@@ -119,20 +125,20 @@ public class AInabilityClient extends TablutClient {
 
 	            // print current state
 	            System.out.println("Current state:");
-	            state = this.getCurrentState();
-	           
+	            state = this.getCurrentState();	           
 	            System.out.println(state.toString());
 
 
 
-	            // if i'm WHITE
+	            // if player == WHITE
 	            if (this.getPlayer().equals(State.Turn.WHITE)) {
-
+	            	
 	                // if is my turn (WHITE)
 	                if (state.getTurn().equals(StateTablut.Turn.WHITE)) {
 
-	                    System.out.println("\nSearching a suitable move... ");
-
+	                    System.out.println("\nPicking a magical move from the hat... ");
+	                    System.out.println(this.SheepAphorism.get(this.rand.nextInt(this.SheepAphorism.size())));
+	                    
 	                    // search the best move in search tree
 	                    long startTime = System.nanoTime();
 	                    Action a = findBestMove(tablutGame, state);
@@ -176,8 +182,9 @@ public class AInabilityClient extends TablutClient {
 	                // if is my turn (BLACK)
 	                if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
 
-	                    System.out.println("\nSearching a suitable move... ");
-
+	                  
+	                    System.out.println("\nPicking a magical move from the hat... ");
+	                    System.out.println(this.WolfAphorism.get(this.rand.nextInt(this.WolfAphorism.size())));
 	                    // search the best move in search tree
 	                    long startTime = System.nanoTime();
 	                    Action a = findBestMove(tablutGame, state);

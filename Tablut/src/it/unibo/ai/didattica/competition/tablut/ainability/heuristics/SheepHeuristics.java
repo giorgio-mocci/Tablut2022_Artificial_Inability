@@ -5,61 +5,43 @@ import it.unibo.ai.didattica.competition.tablut.domain.State.Pawn;
 
 public class SheepHeuristics extends Heuristics {
 	private State state;
-
-	private static int NUM_BLACK = 16;
-	// private static int NUM_WHITE = 9;
-
-	// 03/05
-	/*
-	 * private static int WEIGHT_WHITE_PAWNS = 70; private static int
-	 * WEIGHT_BLACK_PAWNS = 25; private static int WEIGHT_WINNING_ROW_COLUMN = 50;//
-	 * row or column that take the king to win private static int
-	 * WEIGHT_KING_IS_SAFE = 40; private static int WEIGHT_THREAT = -10; // Threat
-	 * of black pawn to be eaten
-	 */
-	// private static int WEIGHT_OPEN_WAYS = 30;
-	// WEIGHT:peppe
+	private int currentNumberOfWhite;
+	private int currentNumberOfBlack;
+	private int kingPositionRow;
+	private int kingPositionColumn;
+	
+	// ----WEIGHT ----
+	private static int NUM_BLACK = 16;	
 	private static int WEIGHT_WHITE_PAWNS = 70; 
 	private static int WEIGHT_BLACK_PAWNS = 25;
-	private static int WEIGHT_THREAT = -20; // Threat of black pawn to be eaten
-	private static int WEIGHT_WINNING_ROW_COLUMN = 50;// row or column that take the king to win
+	private static int WEIGHT_THREAT = -20; 
+	private static int WEIGHT_WINNING_ROW_COLUMN = 55;
 //	private static int WEIGHT_KING_IS_SAFE = 60;
 //	private static int WEIGHT_BLACK_NEAR_KING= -10;
-
-	// private static int WEIGHT_KING_WAY_TO_ESCAPE = 10;// Decidere se fare
-	// proporzionale quindi 1 via *1 , 2 vie *2
-	// oppure dare un peso
-
-	// private static int WEIGHT_KING_ON_THRONE = 0;
-	// private static int WEIGHT_KING_NEAR_THRONE = 0;
-	// private static int WEIGHT_KING_NEAR_CITADEL=0;//Put this or consider the
-	// citadel as a black pawn?
-	// diverso in base alla singola via libera o a 2 o più vie libere
-	// private static int WEIGHT_BLACK_EATEN = 30;
-
+	
+	
+	/**
+	 * this method return the heuristic value for the current state
+	 */
 	@Override
 	public int evaluateState() {
-
 		int result = 0;
-
 		// init
 		kingPositionAndNumberPawns();
-
 		result += WEIGHT_WHITE_PAWNS * this.currentNumberOfWhite 
 				//+ WEIGHT_KING_IS_SAFE * kingSafe()
 				+ WEIGHT_WINNING_ROW_COLUMN * winningRowColumn()
 				+ WEIGHT_THREAT + this.numberOfPawnsInDanger()
 				+ WEIGHT_BLACK_PAWNS * (NUM_BLACK - this.currentNumberOfBlack);
 				//+ WEIGHT_BLACK_NEAR_KING* NumberOfBlackNearKing() ;
-
 		return result;
 	}
 
-	private int currentNumberOfWhite;
-	private int currentNumberOfBlack;
-	private int kingPositionRow;
-	private int kingPositionColumn;
 
+	/**
+	 * Constructor
+	 * @param state
+	 */
 	public SheepHeuristics(State state) {
 		super(state);
 		this.state = state;
@@ -67,10 +49,9 @@ public class SheepHeuristics extends Heuristics {
 	}
 
 	
-	private int NumberOfBlackNearKing() {
-		//System.out.println("----Cerco la posizione del re ----");
-		int number = 0;
-		//System.out.println("----il re sta in posizione "+ kingPositionRow + " "+ kingPositionColumn +" ----");
+	@SuppressWarnings("unused")
+	private int NumberOfBlackNearKing() {		
+		int number = 0;		
 		//check north
 		if(kingPositionRow-1-1>=0 && 
 									(state.getBoard()[kingPositionRow-1-1][kingPositionColumn-1].equalsPawn(State.Pawn.BLACK.toString()) ||
@@ -121,7 +102,7 @@ public class SheepHeuristics extends Heuristics {
 					// check north
 					if (row - 1 - 1 >= 0 && (board[row - 1 - 1][column - 1].equalsPawn(State.Pawn.BLACK.toString())
 							|| this.isPositionCitadel(row - 1 - 1, column - 1)
-							|| board[row - 1 - 1][column - 1].equalsPawn(State.Pawn.THRONE.toString()))) {// we have a
+							|| board[row - 1 - 1][column - 1].equalsPawn(State.Pawn.THRONE.toString()))) {	// we have a
 																											// potential
 																											// threat on
 																											// south
@@ -238,8 +219,8 @@ public class SheepHeuristics extends Heuristics {
 	 * this method calculate the number of free ways that the king can use to escape
 	 * 
 	 * @return number of free ways
-	 */
-	// DA TESTARE PER BENE CON DELLE STAMPE DURANTE IL TEST!!!!
+	 */	
+	@SuppressWarnings("unused")
 	private int NumberOfKingFreeWays() {
 		// Position kingPosition = this.getKingPosition();
 		int freeWays = 0;
@@ -303,7 +284,7 @@ public class SheepHeuristics extends Heuristics {
 		return freeWays;
 	}
 
-	/*
+	/**
 	 * this method set the position of the king in the board and the number of
 	 * white/back pawns
 	 * 
@@ -337,6 +318,8 @@ public class SheepHeuristics extends Heuristics {
 	 * 
 	 * @return
 	 */
+	//DA COMMENTARE E SISTEMARE DA MARCO O LUCA
+	@SuppressWarnings("unused")
 	private int kingSafe() {
 
 		int result = 0;
@@ -413,10 +396,7 @@ public class SheepHeuristics extends Heuristics {
 	}
 	
 	private boolean kingArriveColumn(int line) {
-
-	    int i;
-
-	    
+	    int i;    
 
 	    if ((kingPositionColumn-1) < line) {
 	      for (i = kingPositionColumn; i < line; i++) {
@@ -438,10 +418,7 @@ public class SheepHeuristics extends Heuristics {
 	  
 	  
 	  private boolean kingArriveRow(int line) {
-
-	    int i;
-
-	    
+	    int i;    
 
 	    if ((kingPositionRow-1) < line) {
 	      for (i = kingPositionRow; i < line; i++) {
@@ -463,7 +440,6 @@ public class SheepHeuristics extends Heuristics {
 	private int winningRowColumn() {
 
 		int result = 0;
-
 		// noPawnsInRow follow the standard 0-8 and kingPosition follow the standard 1-9
 		if ((noPawnsInRow(2) && this.kingPositionRow == 3) || (noPawnsInRow(6) && this.kingPositionRow == 7)
 				|| (noPawnsInColumn(2) && this.kingPositionColumn == 3)
@@ -487,40 +463,5 @@ public class SheepHeuristics extends Heuristics {
 		return result;
 
 	}
-
-	/**
-	 * this method calculate the number of free ways that the king can use to escape
-	 * 
-	 * @return number of free ways
-	 */
-
-	/*
-	 * private int NumberOfKingFreeWays() { //Position kingPosition =
-	 * this.getKingPosition(); int freeWays =0; //check north freeWays++; for(int i
-	 * = kingPosition.getRow()-1;i>1;i--) { if(! state.getPawn(i-1,
-	 * kingPosition.getColumn()-1).equalsPawn(State.Pawn.EMPTY.toString()) ||
-	 * //match if a pawn is found on the way to liberty this.isPositionCitadel(new
-	 * Position(i-1,kingPosition.getColumn()-1)) ) { //match if a citadel is found
-	 * on the way to liberty freeWays --; break; } } //check south freeWays++;
-	 * for(int i = kingPosition.getRow()+1;i<9;i++) { if(! state.getPawn(i-1,
-	 * kingPosition.getColumn()-1).equalsPawn(State.Pawn.EMPTY.toString())|| //match
-	 * if a pawn is found on the way to liberty this.isPositionCitadel(new
-	 * Position(i-1,kingPosition.getColumn()-1)) ) { //match if a citadel is found
-	 * on the way to liberty freeWays --; break; } } //check west freeWays++;
-	 * for(int i = kingPosition.getColumn()-1;i>1;i--) { if(!
-	 * state.getPawn(kingPosition.getRow()-1,
-	 * i-1).equalsPawn(State.Pawn.EMPTY.toString())|| //match if a pawn is found on
-	 * the way to liberty this.isPositionCitadel(new
-	 * Position(kingPosition.getRow()-1,i-1)) ) { //match if a citadel is found on
-	 * the way to liberty freeWays --; break; } } //check east freeWays++; for(int i
-	 * = kingPosition.getColumn()+1;i<9;i++) { if(!
-	 * state.getPawn(kingPosition.getRow()-1,
-	 * i-1).equalsPawn(State.Pawn.EMPTY.toString())|| //match if a pawn is found on
-	 * the way to liberty this.isPositionCitadel(new
-	 * Position(kingPosition.getRow()-1,i-1)) ) { //match if a citadel is found on
-	 * the way to liberty freeWays --; break; } }
-	 * 
-	 * return freeWays; }
-	 */
 
 }
