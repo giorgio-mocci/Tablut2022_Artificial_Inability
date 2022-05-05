@@ -39,7 +39,7 @@ public class CustomIterativeDeepeningAlphaBetaSearch extends IterativeDeepeningA
 	public Action makeDecision(State state) {
 		
 		Action a = super.makeDecision(state);		
-		System.out.println("Explored a total of "+getMetrics().get(METRICS_NODES_EXPANDED)+" nodes, reaching a dept limit of "+getMetrics().get(METRICS_MAX_DEPTH));
+		System.out.println("     Explored a total of "+getMetrics().get(METRICS_NODES_EXPANDED)+" nodes, reaching a dept limit of "+getMetrics().get(METRICS_MAX_DEPTH));
 		return a;
 	}
 	

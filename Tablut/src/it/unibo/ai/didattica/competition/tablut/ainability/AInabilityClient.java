@@ -106,6 +106,21 @@ public class AInabilityClient extends TablutClient {
 
 
 	        // attributes depends to parameters passed to main
+	        System.out.println("\r\n"
+	        		+ "                _   _  __ _      _       _ \r\n"
+	        		+ "     /\\        | | (_)/ _(_)    (_)     | |\r\n"
+	        		+ "    /  \\   _ __| |_ _| |_ _  ___ _  __ _| |\r\n"
+	        		+ "   / /\\ \\ | '__| __| |  _| |/ __| |/ _` | |\r\n"
+	        		+ "  / ____ \\| |  | |_| | | | | (__| | (_| | |\r\n"
+	        		+ " /_/___ \\_\\_|   \\__|_|_| |_|\\___|_|\\__,_|_|\r\n"
+	        		+ " |_   _|           | |   (_) (_) |         \r\n"
+	        		+ "   | |  _ __   __ _| |__  _| |_| |_ _   _  \r\n"
+	        		+ "   | | | '_ \\ / _` | '_ \\| | | | __| | | | \r\n"
+	        		+ "  _| |_| | | | (_| | |_) | | | | |_| |_| | \r\n"
+	        		+ " |_____|_| |_|\\__,_|_.__/|_|_|_|\\__|\\__, | \r\n"
+	        		+ "                                     __/ | \r\n"
+	        		+ "                                    |___/  \r\n"
+	        		+ "");
 	        System.out.println("AInabilityClient: " + (this.getPlayer().equals(State.Turn.BLACK) ? "BLACK" : "WHITE" ));
 	        System.out.println("Timeout: " + this.timeout +" s");
 	        System.out.println("Server: " + this.serverIp);
@@ -124,9 +139,9 @@ public class AInabilityClient extends TablutClient {
 	            }
 
 	            // print current state
-	            System.out.println("Current state:");
+	           
 	            state = this.getCurrentState();	           
-	            System.out.println(state.toString());
+	           
 
 
 
@@ -137,8 +152,8 @@ public class AInabilityClient extends TablutClient {
 	                if (state.getTurn().equals(StateTablut.Turn.WHITE)) {
 	                	 Action a=null;
 	                	System.out.println("TURNO: "+ this.turn);
-		                System.out.println("Picking a magical move from the hat... ");
-	                    System.out.println(this.SheepAphorism.get(this.rand.nextInt(this.SheepAphorism.size())));
+		                System.out.println("     Picking a magical move from the hat... ");
+	                    System.out.println("     "+this.SheepAphorism.get(this.rand.nextInt(this.SheepAphorism.size()))+ " \n");
 	                    
 	                    
 	                    
@@ -147,13 +162,12 @@ public class AInabilityClient extends TablutClient {
 	                    long startTime = System.nanoTime();
 	                    //opening
 	                   
-	                    a = findBestMove(tablutGame, state);
-	                   
+	                    a = findBestMove(tablutGame, state);                  
 	                  
 	                    
                         long stopTime = System.nanoTime();
-                        System.out.println("Time elapsed: " + (double)(stopTime - startTime)/1000000000+ " seconds");
-                        System.out.println("\nAction selected: " + a.toString());
+                        //System.out.println("Time elapsed: " + (double)(stopTime - startTime)/1000000000+ " seconds");
+                        System.out.println("     A sheep moved " + a.toString());
 
 	                    try {
 	                        this.write(a);
@@ -166,7 +180,7 @@ public class AInabilityClient extends TablutClient {
 	                // if is turn of oppenent (BLACK)
 	                else if (state.getTurn().equals(StateTablut.Turn.BLACK)) {
 	                	this.turn++;
-	                    System.out.println("Waiting for your opponent move...\n");
+	                  //  System.out.println("Waiting for your opponent move...\n");
 	                }
 	                // if I WIN
 	                else if (state.getTurn().equals(StateTablut.Turn.WHITEWIN)) {
@@ -192,27 +206,27 @@ public class AInabilityClient extends TablutClient {
 	                if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
 
 	                	System.out.println("TURNO: "+ this.turn);
-	                    System.out.println("Picking a magical move from the hat... ");
-	                    System.out.println(this.WolfAphorism.get(this.rand.nextInt(this.WolfAphorism.size())));
+	                    System.out.println("     Picking a magical move from the hat... ");
+	                    System.out.println("     "+this.WolfAphorism.get(this.rand.nextInt(this.WolfAphorism.size()))+" \n");
 	                    // search the best move in search tree
 	                    long startTime = System.nanoTime();
 	                    Action a = findBestMove(tablutGame, state);
 	                    
                         long stopTime = System.nanoTime();
-                        System.out.println("Time elapsed: " + (double)(stopTime - startTime)/1000000000+ " seconds");
-                        System.out.println("\nAction selected: " + a.toString());
+                       // System.out.println("Time elapsed: " + (double)(stopTime - startTime)/1000000000+ " seconds");
+                        System.out.println("     A wolf moved " + a.toString());
 
 	                    try {
 	                        this.write(a);
 	                    } catch (ClassNotFoundException | IOException e) {
 	                        e.printStackTrace();
 	                    }
-
+	                    this.turn++;
 	                }
 
 	                // if is turn of opponent (WHITE)
 	                else if (state.getTurn().equals(StateTablut.Turn.WHITE)) {
-	                    System.out.println("Waiting for your opponent move...\n");
+	           //         System.out.println("Waiting for your opponent move...\n");
 	                }
 
 	                // if I LOSE
