@@ -12,12 +12,12 @@ public class SheepHeuristics extends Heuristics {
 	
 	// ----WEIGHT ----
 	private static int NUM_BLACK = 16;	
-	private static int WEIGHT_WHITE_PAWNS = 70; 
+	private  int WEIGHT_WHITE_PAWNS = 70; 
 	private static int WEIGHT_BLACK_PAWNS = 25;
-	private static int WEIGHT_THREAT = -20; 
+	private  int WEIGHT_THREAT = -20; 
 	private static int WEIGHT_WINNING_ROW_COLUMN = 55;
 //	private static int WEIGHT_KING_IS_SAFE = 60;
-//	private static int WEIGHT_BLACK_NEAR_KING= -10;
+	private static int WEIGHT_BLACK_NEAR_KING= -5;
 	
 	
 	/**
@@ -32,7 +32,8 @@ public class SheepHeuristics extends Heuristics {
 				//+ WEIGHT_KING_IS_SAFE * kingSafe()
 				+ WEIGHT_WINNING_ROW_COLUMN * winningRowColumn()
 				+ WEIGHT_THREAT + this.numberOfPawnsInDanger()
-				+ WEIGHT_BLACK_PAWNS * (NUM_BLACK - this.currentNumberOfBlack);
+				+ WEIGHT_BLACK_PAWNS * (NUM_BLACK - this.currentNumberOfBlack) + 
+				WEIGHT_BLACK_NEAR_KING * this.NumberOfBlackNearKing();
 				//+ WEIGHT_BLACK_NEAR_KING* NumberOfBlackNearKing() ;
 		return result;
 	}
@@ -309,6 +310,15 @@ public class SheepHeuristics extends Heuristics {
 					currentNumberOfWhite++;
 				}
 			}
+		}
+		//if i've Eaten enough, use old weight
+		if((currentNumberOfBlack<=11 && currentNumberOfWhite>=5) 
+				|| (currentNumberOfBlack<=9 && currentNumberOfWhite>=3)) {
+		      WEIGHT_WINNING_ROW_COLUMN=80; 
+		    }else
+		{
+			this.WEIGHT_THREAT=this.WEIGHT_THREAT/2;
+			this.WEIGHT_WHITE_PAWNS=this.WEIGHT_WHITE_PAWNS/2;
 		}
 	}
 

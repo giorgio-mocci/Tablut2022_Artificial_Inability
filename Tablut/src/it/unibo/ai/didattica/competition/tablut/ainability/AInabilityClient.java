@@ -16,7 +16,7 @@ import it.unibo.ai.didattica.competition.tablut.domain.StateTablut;
 import it.unibo.ai.didattica.competition.tablut.domain.State.Turn;
 
 public class AInabilityClient extends TablutClient {	
-
+		private int turn =1;
 	    private int game;
 	    private boolean debug;
 	    private ArrayList<String> SheepAphorism;
@@ -135,13 +135,21 @@ public class AInabilityClient extends TablutClient {
 	            	
 	                // if is my turn (WHITE)
 	                if (state.getTurn().equals(StateTablut.Turn.WHITE)) {
-
-	                    System.out.println("\nPicking a magical move from the hat... ");
+	                	 Action a=null;
+	                	System.out.println("TURNO: "+ this.turn);
+		                System.out.println("Picking a magical move from the hat... ");
 	                    System.out.println(this.SheepAphorism.get(this.rand.nextInt(this.SheepAphorism.size())));
+	                    
+	                    
+	                    
 	                    
 	                    // search the best move in search tree
 	                    long startTime = System.nanoTime();
-	                    Action a = findBestMove(tablutGame, state);
+	                    //opening
+	                   
+	                    a = findBestMove(tablutGame, state);
+	                   
+	                  
 	                    
                         long stopTime = System.nanoTime();
                         System.out.println("Time elapsed: " + (double)(stopTime - startTime)/1000000000+ " seconds");
@@ -152,11 +160,12 @@ public class AInabilityClient extends TablutClient {
 	                    } catch (ClassNotFoundException | IOException e) {
 	                        e.printStackTrace();
 	                    }
-
+	                    this.turn++;
 	                }
 
 	                // if is turn of oppenent (BLACK)
 	                else if (state.getTurn().equals(StateTablut.Turn.BLACK)) {
+	                	this.turn++;
 	                    System.out.println("Waiting for your opponent move...\n");
 	                }
 	                // if I WIN
@@ -182,8 +191,8 @@ public class AInabilityClient extends TablutClient {
 	                // if is my turn (BLACK)
 	                if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
 
-	                  
-	                    System.out.println("\nPicking a magical move from the hat... ");
+	                	System.out.println("TURNO: "+ this.turn);
+	                    System.out.println("Picking a magical move from the hat... ");
 	                    System.out.println(this.WolfAphorism.get(this.rand.nextInt(this.WolfAphorism.size())));
 	                    // search the best move in search tree
 	                    long startTime = System.nanoTime();
@@ -227,6 +236,14 @@ public class AInabilityClient extends TablutClient {
 	        }
 	    }
 
+	    
+	    private boolean NoBlackInUpperQuadrant(State state){
+	    	for(int i=0;i<9;i++)
+	    	{
+	    		if(state.getPawn(2, i).equals(State.Pawn.BLACK))return false;
+	    	}
+	    	return true;
+	    }
 
 	    /**
 	     * Method that find a suitable moves searching in game tree
