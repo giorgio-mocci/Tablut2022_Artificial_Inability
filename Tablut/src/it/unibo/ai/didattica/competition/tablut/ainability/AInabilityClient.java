@@ -227,6 +227,7 @@ public class AInabilityClient extends TablutClient {
 	                // if is turn of opponent (WHITE)
 	                else if (state.getTurn().equals(StateTablut.Turn.WHITE)) {
 	           //         System.out.println("Waiting for your opponent move...\n");
+	                	  this.turn++;
 	                }
 
 	                // if I LOSE
