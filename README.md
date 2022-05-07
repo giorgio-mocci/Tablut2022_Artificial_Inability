@@ -1,4 +1,4 @@
-# :chess_pawn: Tablut2022_Artificial_Inability
+# :chess_pawn: Artificial Inability :chess_pawn:
 
 Artificial Inability is an artificial intelligence project for the Tablut Game Competition organized by the Fondamenti di Intelligenza Artificiale M 2022 course at the Unibo.
 
@@ -15,11 +15,11 @@ java -jar AInabilityClient.jar <BLACK|WHITE> <timeout-in-seconds> <server-ip> <d
 ```
 
 ## Team Artificial Inability
--[Giorgio Mocci](https://github.com/giorgio-mocci)
--[Giuseppe Sergi](https://github.com/GiuseppeSergi3)
--[Marco Motamed](https://github.com/MotaMarco)
--[Luca Berardi](https://github.com/LucaBerardi6)
+- [Giorgio Mocci](https://github.com/giorgio-mocci)
+- [Giuseppe Sergi](https://github.com/GiuseppeSergi3)
+- [Marco Motamed](https://github.com/MotaMarco)
+- [Luca Berardi](https://github.com/LucaBerardi6)
 
-##Credits
+## Credits
 Logo by [Giuseppe Sergi](https://github.com/GiuseppeSergi3)
 Basic software provided by [Andrea Galassi](https://github.com/AGalassi) [here](https://github.com/AGalassi/TablutCompetition)
