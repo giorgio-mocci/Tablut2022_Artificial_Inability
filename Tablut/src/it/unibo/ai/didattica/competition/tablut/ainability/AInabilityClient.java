@@ -35,7 +35,7 @@ public class AInabilityClient extends TablutClient {
 	    public static void main(String[] args) throws IOException {
 	        int gameType = 4;
 	        String role = "";
-	        String name = "ArtificialInability";
+	        String name = "AInability";
 	        String ipAddress = "localhost";
 	        int timeout = 60;
 	        boolean debug = false;
@@ -249,15 +249,6 @@ public class AInabilityClient extends TablutClient {
 	                }
 	            }
 	        }
-	    }
-
-	    
-	    private boolean NoBlackInUpperQuadrant(State state){
-	    	for(int i=0;i<9;i++)
-	    	{
-	    		if(state.getPawn(2, i).equals(State.Pawn.BLACK))return false;
-	    	}
-	    	return true;
 	    }
 
 	    /**

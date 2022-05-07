@@ -32,10 +32,10 @@ public class AInabilityAphorism {
 		WolfAphorism.add("An italian aphorism say:'Il lupo perde il pelo, ma non la partita di Tablut'");
 		WolfAphorism.add("Wolves have over 200 million scent cells");
 		WolfAphorism.add("Mi hanno buttato in mezzo ai lupi e ne sono uscito capobranco");
-		WolfAphorism.add("The most famous wolf of all time is LUPO ALBERTO. \nLupo lucio is the second one");
-		WolfAphorism.add("Wolves are as long as really tall people – but much faster");
+		WolfAphorism.add("The most famous wolf of all time is LUPO ALBERTO. \n     Lupo lucio is the second one");
+		WolfAphorism.add("Wolves are as long as really tall people ï¿½ but much faster");
 		WolfAphorism.add("I'm Balto and i'm pulling a sled");
-		WolfAphorism.add("Mozart's name is Wolfgang but Mozart is not a wolf gang");
+		WolfAphorism.add("Mozart's name is Wolfgang but Mozart is not aï¿½wolfï¿½gang");
 		WolfAphorism.add("Where there are sheep, the wolves are never very far away");
 		
 		//WolfAphorism.add("");
