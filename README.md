@@ -12,7 +12,7 @@ You can download the .jar file located [here](https://github.com/giorgio-mocci/T
 java -jar AInabilityClient.jar <BLACK|WHITE> <timeout-in-seconds> <server-ip> <debug(optional)>
 ```
 
-## Team Artificial Inability
+## Team: Artificial Inability
 - [Giorgio Mocci](https://github.com/giorgio-mocci)
 - [Giuseppe Sergi](https://github.com/GiuseppeSergi3)
 - [Marco Motamed](https://github.com/MotaMarco)
@@ -20,4 +20,4 @@ java -jar AInabilityClient.jar <BLACK|WHITE> <timeout-in-seconds> <server-ip> <d
 
 ## Credits
 - Logo by [Giuseppe Sergi](https://github.com/GiuseppeSergi3)
-- Basic software provided by [Andrea Galassi](https://github.com/AGalassi) [here](https://github.com/AGalassi/TablutCompetition)
+- [Basic software](https://github.com/AGalassi/TablutCompetition) provided by [Andrea Galassi](https://github.com/AGalassi) 
