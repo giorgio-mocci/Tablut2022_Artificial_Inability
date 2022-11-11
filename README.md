@@ -26,7 +26,8 @@ Our agent has performed very good!
    <img src="Tablut/images/FinalRoundResults.PNG" >
 </p>
 
--Finally, we were rewarded with a very special prize: THE REAPER
+-Finally, we were rewarded with a very special prize: ${\color{red}THE \space \color{red}REAPER}$ 
+
 <p align="center">
    <img src="Tablut/images/SpecialPrize.PNG" >
 </p>
