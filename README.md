@@ -12,6 +12,26 @@ You can download the .jar file located [here](https://github.com/giorgio-mocci/T
 java -jar AInabilityClient.jar <BLACK|WHITE> <timeout-in-seconds> <server-ip> <debug(optional)>
 ```
 
+
+## Results:
+Our agent has performed very good!
+
+-We managed to obtain the first place in our tournament --> against other group with 2 or more people
+<p align="center">
+   <img src="Tablut/images/FirstRoundResults.PNG" >
+</p>
+
+-In the last tournament against the top player of each round we got the third place
+<p align="center">
+   <img src="Tablut/images/FinalRoundResults.PNG" >
+</p>
+
+-Finally, we were rewarded with a very special prize: THE REAPER
+<p align="center">
+   <img src="Tablut/images/SpecialPrize.PNG" >
+</p>
+
+
 ## Team: Artificial Inability
 - [Giorgio Mocci](https://github.com/giorgio-mocci)
 - [Giuseppe Sergi](https://github.com/GiuseppeSergi3)
