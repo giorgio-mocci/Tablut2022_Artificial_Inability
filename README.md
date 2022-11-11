@@ -1,7 +1,7 @@
 # :chess_pawn: Artificial Inability :chess_pawn:
 
 <p align="center">
-   <img src="Tablut/logo/Logo.PNG" width="500" height="500">
+   <img src="Tablut/images/Logo.PNG" width="500" height="500">
 </p>
 
 Artificial Inability is a Java-based intelligent agent created to take part in the 2022 Tablut competition of the Fundamentals of Artificial Intelligence course held by Prof. Paola Mello and Prof. Federico Chesani at the University of Bologna.
